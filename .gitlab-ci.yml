@@ -12,8 +12,9 @@ image: gcc
 
 before_script:
  - apt-get update --yes
+ - apt-get install --yes build-essential
  - apt-get install --yes cmake
- - apt-get install --yes qt5-default
+ - apt-get install --yes qt5
  - apt-get install --yes freeglut3
 
 build:

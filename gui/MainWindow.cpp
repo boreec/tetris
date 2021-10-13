@@ -20,7 +20,6 @@ MainWindow::~MainWindow()
 void MainWindow::init_window(){
     setFixedSize(800,600);
     setWindowTitle(QString("My Tetris"));
-    move(screen()->geometry().center() - frameGeometry().center());
 }
 
 void MainWindow::init_widgets(){

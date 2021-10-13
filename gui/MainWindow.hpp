@@ -19,10 +19,6 @@
 #include "gui/RendererGame.hpp"
 #include "gui/RendererPreview.hpp"
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
 class MainWindow : public QMainWindow{
     Q_OBJECT
 
@@ -46,8 +42,6 @@ private:
     void init_widgets();
 
     void addScore(const int);
-
-    Ui::MainWindow *m_ui;
 
     QPushButton m_buttonStart;
     QPushButton m_buttonPause;

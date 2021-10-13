@@ -2,7 +2,7 @@
 
 This program is an amateur reproduction of the Tetris game made in C++, Qt and OpenGL. 
 
-You can see more similar projects here: boreec.fr/projects/
+You can see more similar projects here: https://boreec.fr/projects/
 
 # Requirements
 

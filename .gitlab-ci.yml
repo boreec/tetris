@@ -8,13 +8,12 @@
 # can use verions as well, like gcc:5.2
 # see https://hub.docker.com/_/gcc/
 
-image: gcc
+image: default_qt5_bionic
 
 before_script:
  - apt-get update --yes
  - apt-get install --yes build-essential
  - apt-get install --yes libgl1-mesa-dev
- - apt-get install --yes libqt5opengl5
  - apt-get install --yes cmake
  - apt-get install --yes freeglut3
 

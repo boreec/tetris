@@ -10,6 +10,9 @@
 
 image: theshadowx/qt5
 
+before_script:
+  - apt-get update
+  - apt-get install -y cmake
 build:
   script:
     - mkdir build

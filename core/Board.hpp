@@ -3,6 +3,7 @@
 #include "Tetromino.hpp"
 #include "TetrominoFactory.hpp"
 
+#include <cassert>
 #include <QColor>
 
 #define BOARD_WIDTH 10

@@ -60,7 +60,7 @@ namespace Tetris{
             QVBoxLayout m_layoutInformations;
             QHBoxLayout m_layoutButtons;
 
-            Tetris::core::Board* m_board;
+            Tetris::core::Board m_board;
 
             QTimer* m_timer;
 

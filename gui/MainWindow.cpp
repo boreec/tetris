@@ -8,8 +8,6 @@ Tetris::gui::MainWindow::MainWindow(QWidget *parent)
 
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(update_game_area()));
-
-    m_board = new Tetris::core::Board();
 }
 
 Tetris::gui::MainWindow::~MainWindow()
@@ -70,13 +68,13 @@ void Tetris::gui::MainWindow::init_widgets(){
 }
 
 void Tetris::gui::MainWindow::init_game_area(){
-   m_board->clear();
-   m_board->setCurrentPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
-   m_board->setNextPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
-   m_renderGame.setBoard(m_board);
+   m_board.clear();
+   m_board.setCurrentPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
+   m_board.setNextPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
+   m_renderGame.setBoard(&m_board);
    m_renderGame.setGameOver(false);
 
-   m_renderPreview.setTetromino(m_board->getNextPiece());
+   m_renderPreview.setTetromino(m_board.getNextPiece());
    m_renderPreview.update();
    m_buttonStart.setText(QString("Restart"));
 
@@ -93,24 +91,24 @@ void Tetris::gui::MainWindow::init_game_area(){
 }
 
 void Tetris::gui::MainWindow::update_game_area(){
-    if(!m_board->canMoveCurrentPieceDown()){
-        m_board->dropCurrentPiece();
-        m_board->setCurrentPiece(m_board->getNextPiece());
-        m_board->setNextPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
-        m_renderPreview.setTetromino(m_board->getNextPiece());
-        if(int l = m_board->removeCompletedLines()){
+    if(!m_board.canMoveCurrentPieceDown()){
+        m_board.dropCurrentPiece();
+        m_board.setCurrentPiece(m_board.getNextPiece());
+        m_board.setNextPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
+        m_renderPreview.setTetromino(m_board.getNextPiece());
+        if(int l = m_board.removeCompletedLines()){
             m_lines += l;
             addScore(l);
             m_labelLines.setText(QString("Lines\n") + QString::number(m_lines));
             m_labelScore.setText(QString("Score\n") + QString::number(m_score));
-        }else if(m_board->isGameOver()){
+        }else if(m_board.isGameOver()){
             m_renderGame.setGameOver(true);
             m_renderGame.update();
             m_timer->stop();
         }
         m_renderPreview.update();
     }else{
-        m_board->getCurrentPiece()->setY(m_board->getCurrentPiece()->getY() + 1);
+        m_board.getCurrentPiece()->setY(m_board.getCurrentPiece()->getY() + 1);
     }
     m_renderGame.update();
 }
@@ -138,24 +136,24 @@ void Tetris::gui::MainWindow::keyReleaseEvent(QKeyEvent* e){
     // Change piece coordinates after checking if it can moves in
     // the pressed direction and rendering the move.
     if(e->key() == Qt::Key_Left){
-        if(m_board->canMoveCurrentPieceLeft()){
+        if(m_board.canMoveCurrentPieceLeft()){
             m_renderGame.update();
-            m_board->getCurrentPiece()->setX(m_board->getCurrentPiece()->getX() - 1);
+            m_board.getCurrentPiece()->setX(m_board.getCurrentPiece()->getX() - 1);
         }
     }else if(e->key() == Qt::Key_Right){
-        if(m_board->canMoveCurrentPieceRight()){
+        if(m_board.canMoveCurrentPieceRight()){
             m_renderGame.update();
-            m_board->getCurrentPiece()->setX(m_board->getCurrentPiece()->getX() + 1);
+            m_board.getCurrentPiece()->setX(m_board.getCurrentPiece()->getX() + 1);
         }
     }else if(e->key() == Qt::Key_Up){
-        if(m_board->canRotateCurrentPiece()){
+        if(m_board.canRotateCurrentPiece()){
             m_renderGame.update();
-            m_board->getCurrentPiece()->setOrientation((m_board->getCurrentPiece()->getOrientation() + 1) % 4);
+            m_board.getCurrentPiece()->setOrientation((m_board.getCurrentPiece()->getOrientation() + 1) % 4);
         }
     }else if(e->key() == Qt::Key_Down){
-        if(m_board->canMoveCurrentPieceDown()){
+        if(m_board.canMoveCurrentPieceDown()){
             m_renderGame.update();
-            m_board->getCurrentPiece()->setY(m_board->getCurrentPiece()->getY() + 1);
+            m_board.getCurrentPiece()->setY(m_board.getCurrentPiece()->getY() + 1);
         }
     }
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <memory>
 #include <random>
 
 #include "Tetromino.hpp"
@@ -18,7 +19,7 @@ namespace Tetris{
         public:
             TetrominoFactory();
 
-            static Tetris::core::Tetromino* generateRandomTetromino();
+            static std::unique_ptr<Tetris::core::Tetromino> generateRandomTetromino();
         };
     }
 }

@@ -1,15 +1,15 @@
 #include "Tetromino_L.hpp"
 
-Tetromino_L::Tetromino_L()
+Tetris::core::Tetromino_L::Tetromino_L()
 {
 
 }
 
-char Tetromino_L::getChar() const{
+char Tetris::core::Tetromino_L::getChar() const{
     return L_CHAR;
 }
 
-std::array<std::array<char,4>,4> Tetromino_L::getPiece(int orientation) const{
+std::array<std::array<char,4>,4> Tetris::core::Tetromino_L::getPiece(int orientation) const{
     if(!orientation)
         return {{
             {EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL},

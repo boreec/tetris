@@ -12,9 +12,13 @@
 #include "Tetromino_T.hpp"
 #include "Tetromino_Z.hpp"
 
-class TetrominoFactory{
-public:
-    TetrominoFactory();
+namespace Tetris{
+    namespace core{
+        class TetrominoFactory{
+        public:
+            TetrominoFactory();
 
-    static Tetromino* generateRandomTetromino();
-};
+            static Tetris::core::Tetromino* generateRandomTetromino();
+        };
+    }
+}

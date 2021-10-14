@@ -1,17 +1,17 @@
 #include "RendererGame.hpp"
 #include <iostream>
 
-RendererGame::RendererGame() :
+Tetris::gui::RendererGame::RendererGame() :
     m_board(nullptr), m_gameOver(false)
 {
 
 }
 
-void RendererGame::initializeGL(){
+void Tetris::gui::RendererGame::initializeGL(){
     //
 }
 
-void RendererGame::paintGL(){
+void Tetris::gui::RendererGame::paintGL(){
     if(m_gameOver){
         drawGameOverScreen();
         return;
@@ -36,7 +36,7 @@ void RendererGame::paintGL(){
     }
 }
 
-void RendererGame::drawBlock(QPainter& painter, const int x, const int y, const int blockSize, const QColor& colour){
+void Tetris::gui::RendererGame::drawBlock(QPainter& painter, const int x, const int y, const int blockSize, const QColor& colour){
     painter.fillRect(x, y, blockSize, blockSize, QBrush(colour));
     const int trapezoidHeight = blockSize / 4;
     // draw shiny edges
@@ -75,7 +75,7 @@ void RendererGame::drawBlock(QPainter& painter, const int x, const int y, const 
     }
 }
 
-void RendererGame::drawGameOverScreen(){
+void Tetris::gui::RendererGame::drawGameOverScreen(){
     QPainter painter(this);
     painter.fillRect(0,0,this->width(), this->height(), QBrush(Qt::red));
     painter.setFont(QFont("Courier", 36, QFont::DemiBold));
@@ -83,14 +83,14 @@ void RendererGame::drawGameOverScreen(){
     painter.end();
 }
 
-void RendererGame::resizeGL(int w, int h){
+void Tetris::gui::RendererGame::resizeGL(int w, int h){
     glViewport(0, 0, w, h);
 }
 
-void RendererGame::setBoard(Board *board){
+void Tetris::gui::RendererGame::setBoard(Tetris::core::Board *board){
     m_board = board;
 }
 
-void RendererGame::setGameOver(bool b){
+void Tetris::gui::RendererGame::setGameOver(bool b){
     m_gameOver = b;
 }

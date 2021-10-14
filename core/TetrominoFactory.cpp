@@ -1,11 +1,11 @@
 #include "TetrominoFactory.hpp"
 
-TetrominoFactory::TetrominoFactory()
+Tetris::core::TetrominoFactory::TetrominoFactory()
 {
 
 }
 
-Tetromino* TetrominoFactory::generateRandomTetromino(){
+Tetris::core::Tetromino* Tetris::core::TetrominoFactory::generateRandomTetromino(){
     Tetromino* t = nullptr;
 
     // Choose a random Tetromino piece

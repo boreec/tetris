@@ -1,7 +1,7 @@
 #include "Tetromino.hpp"
 #include <algorithm>
 #include <iostream>
-Tetromino::Tetromino():
+Tetris::core::Tetromino::Tetromino():
     m_x(5),
     m_y(0),
     m_orientation(0)
@@ -9,30 +9,30 @@ Tetromino::Tetromino():
 
 }
 
-void Tetromino::setX(const int x){
+void Tetris::core::Tetromino::setX(const int x){
     m_x = x;
 }
 
-void Tetromino::setY(const int y){
+void Tetris::core::Tetromino::setY(const int y){
     m_y = y;
 }
 
-int Tetromino::getX() const{
+int Tetris::core::Tetromino::getX() const{
     return m_x;
 }
 
-int Tetromino::getY() const{
+int Tetris::core::Tetromino::getY() const{
     return m_y;
 }
 
-int Tetromino::getOrientation() const{
+int Tetris::core::Tetromino::getOrientation() const{
     return m_orientation;
 }
 
-std::array<std::array<char,4>,4> Tetromino::getPiece() const{
+std::array<std::array<char,4>,4> Tetris::core::Tetromino::getPiece() const{
     return getPiece(m_orientation);
 }
 
-void Tetromino::setOrientation(const int x){
+void Tetris::core::Tetromino::setOrientation(const int x){
     m_orientation = x;
 }

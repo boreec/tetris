@@ -1,14 +1,14 @@
 #include "Tetromino_J.hpp"
 
-Tetromino_J::Tetromino_J()
+Tetris::core::Tetromino_J::Tetromino_J()
 {
 
 }
-char Tetromino_J::getChar() const{
+char Tetris::core::Tetromino_J::getChar() const{
     return J_CHAR;
 }
 
-std::array<std::array<char,4>,4> Tetromino_J::getPiece(int orientation) const{
+std::array<std::array<char,4>,4> Tetris::core::Tetromino_J::getPiece(int orientation) const{
     if(!orientation)
         return {{
             {EMPTY_CELL, EMPTY_CELL, EMPTY_CELL, EMPTY_CELL},

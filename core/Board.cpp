@@ -1,34 +1,34 @@
 #include "Board.hpp"
 #include <iostream>
 
-Board::Board(){
+Tetris::core::Board::Board(){
     clear();
 }
 
-void Board::clear(){
+void Tetris::core::Board::clear(){
     // Put a '.' char in every board's cell to represent emptiness.
     for(int i = 0; i < HEIGHT; ++i){
         std::fill(m_board[i].begin(), m_board[i].end(), EMPTY_CELL);
     }
 }
 
-int Board::getHeight() const{
+int Tetris::core::Board::getHeight() const{
     return HEIGHT;
 }
 
-int Board::getWidth() const{
+int Tetris::core::Board::getWidth() const{
     return WIDTH;
 }
 
-std::array<std::array<char, BOARD_WIDTH>, BOARD_HEIGHT> Board::getBoard() const{
+std::array<std::array<char, BOARD_WIDTH>, BOARD_HEIGHT> Tetris::core::Board::getBoard() const{
     return m_board;
 }
 
-bool Board::isWithinBoardWidth(const int x) const{
+bool Tetris::core::Board::isWithinBoardWidth(const int x) const{
     return x >= 0 && x < BOARD_WIDTH;
 }
 
-bool Board::canMoveCurrentPieceDown(){
+bool Tetris::core::Board::canMoveCurrentPieceDown(){
     bool canMoveDown = true;
     int row_idx, row_start;
     int col_idx = 0;
@@ -46,7 +46,7 @@ bool Board::canMoveCurrentPieceDown(){
     return canMoveDown;
 }
 
-bool Board::canMoveCurrentPieceLeft(){
+bool Tetris::core::Board::canMoveCurrentPieceLeft(){
     bool canMoveLeft = true;
     int col_idx, col_start;
     int row_idx = 0;
@@ -64,7 +64,7 @@ bool Board::canMoveCurrentPieceLeft(){
     return canMoveLeft;
 }
 
-bool Board::canMoveCurrentPieceRight(){
+bool Tetris::core::Board::canMoveCurrentPieceRight(){
     bool canMoveRight = true;
     int col_idx, col_start;
     int row_idx = 0;
@@ -82,7 +82,7 @@ bool Board::canMoveCurrentPieceRight(){
     return canMoveRight;
 }
 
-bool Board::canRotateCurrentPiece(){
+bool Tetris::core::Board::canRotateCurrentPiece(){
     bool canRotate = true;
     int row_idx = 0, col_idx;
     while(row_idx < 4 && canRotate){
@@ -95,7 +95,7 @@ bool Board::canRotateCurrentPiece(){
     }
     return canRotate;
 }
-void Board::dropCurrentPiece(){
+void Tetris::core::Board::dropCurrentPiece(){
     for(int i = 0; i < 4; ++i){
         for(int j = 0; j < 4; ++j){
             if(isWithinBoardWidth(m_currentPiece->getX() + j) &&
@@ -108,7 +108,7 @@ void Board::dropCurrentPiece(){
     }
 }
 
-bool Board::isGameOver() const{
+bool Tetris::core::Board::isGameOver() const{
     bool overlap = false;
     int row_idx = 0;
     while(row_idx < 4 && !overlap){
@@ -124,7 +124,7 @@ bool Board::isGameOver() const{
     return overlap;
 }
 
-int Board::removeCompletedLines(){
+int Tetris::core::Board::removeCompletedLines(){
     int completedLines = 0;
     int rowStart= -1;
     int row_idx = 0;
@@ -155,23 +155,23 @@ int Board::removeCompletedLines(){
     return completedLines;
 }
 
-void Board::setCurrentPiece(Tetromino *t){
+void Tetris::core::Board::setCurrentPiece(Tetromino *t){
     m_currentPiece = t;
 }
 
-void Board::setNextPiece(Tetromino *t){
+void Tetris::core::Board::setNextPiece(Tetromino *t){
     m_nextPiece = t;
 }
 
-Tetromino* Board::getCurrentPiece(){
+Tetris::core::Tetromino* Tetris::core::Board::getCurrentPiece(){
     return m_currentPiece;
 }
 
-Tetromino* Board::getNextPiece(){
+Tetris::core::Tetromino* Tetris::core::Board::getNextPiece(){
     return m_nextPiece;
 }
 
-char Board::getCell(const int x, const int y) const{
+char Tetris::core::Board::getCell(const int x, const int y) const{
     char c = m_board[y][x];
     if(x >= m_currentPiece->getX() && x < m_currentPiece->getX() + 4 &&
        y >= m_currentPiece->getY() && y < m_currentPiece->getY() + 4 ){
@@ -182,7 +182,7 @@ char Board::getCell(const int x, const int y) const{
     return c;
 }
 
-QColor Board::getCharColor(const char c){
+QColor Tetris::core::Board::getCharColor(const char c){
     switch(c){
         case EMPTY_CELL: return Qt::black;
         case I_CHAR: return Qt::cyan;

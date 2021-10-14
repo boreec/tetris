@@ -65,7 +65,7 @@ namespace Tetris{
 
             Tetris::core::Board m_board;
 
-            QTimer* m_timer;
+            std::unique_ptr<QTimer> m_timer;
 
             unsigned m_lines;
             unsigned m_level;

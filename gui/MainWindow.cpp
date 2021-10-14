@@ -6,8 +6,8 @@ Tetris::gui::MainWindow::MainWindow(QWidget *parent)
     init_widgets();
     init_window();
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(update_game_area()));
+    m_timer = std::unique_ptr<QTimer>(new QTimer(this));
+    connect(m_timer.get(), SIGNAL(timeout()), this, SLOT(update_game_area()));
 }
 
 Tetris::gui::MainWindow::~MainWindow()

@@ -70,6 +70,12 @@ namespace Tetris{
             unsigned m_lines;
             unsigned m_level;
             unsigned m_score;
+
+            // time between two updates in ms.
+            const int time_update = 500;
+
+            // 20% speed increasement on a new level.
+            const double time_decrease_rate = 0.20;
         protected:
             void keyReleaseEvent(QKeyEvent* e) override;
         };

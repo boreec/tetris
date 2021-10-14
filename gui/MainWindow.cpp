@@ -100,6 +100,13 @@ void Tetris::gui::MainWindow::update_game_area(){
             addScore(l);
             m_labelLines.setText(QString("Lines\n") + QString::number(m_lines));
             m_labelScore.setText(QString("Score\n") + QString::number(m_score));
+
+            if(m_lines / 10 > (m_lines - l) / 10){
+              m_level++;
+              m_labelLevel.setText(QString("Level\n") + QString::number(m_level));
+              m_timer->stop();
+              m_timer->start(time_update * std::pow(1 - time_decrease_rate, m_level));
+            }
         }else if(m_board.isGameOver()){
             m_renderGame.setGameOver(true);
             m_renderGame.update();

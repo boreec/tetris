@@ -10,6 +10,9 @@
 
 namespace Tetris{
     namespace gui{
+        /**
+         * @brief RendererGame is a custom OpenGL widget to display the game.
+         */
         class RendererGame : public QOpenGLWidget{
         public:
             RendererGame();

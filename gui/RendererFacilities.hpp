@@ -6,6 +6,9 @@
 
 namespace Tetris{
     namespace gui{
+        /**
+         * @brief RendererFacilities provides facilities for drawing.
+         */
         class RendererFacilities{
         public:
             RendererFacilities();

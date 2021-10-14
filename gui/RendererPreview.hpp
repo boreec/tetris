@@ -11,6 +11,9 @@
 
 namespace Tetris{
     namespace gui{
+        /**
+         * @brief RendererPreview is a custom OpenGL widget to display next piece.
+         */
         class RendererPreview : public QOpenGLWidget{
         public:
             RendererPreview(Tetris::core::Tetromino* tetromino = nullptr);
@@ -33,9 +36,6 @@ namespace Tetris{
             void resizeGL(int w, int h) override;
 
             void setTetromino(Tetris::core::Tetromino* tetromino);
-
-            void drawBlock(QPainter&, const int, const int, const int, const QColor&);
-
         private:
             Tetris::core::Tetromino* m_tetromino;
         };

@@ -21,6 +21,9 @@
 
 namespace Tetris{
     namespace gui{
+        /**
+         * @brief MainWindow is the widget representing the main window.
+         */
         class MainWindow : public QMainWindow{
             Q_OBJECT
 

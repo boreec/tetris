@@ -6,6 +6,7 @@
 #include <QColor>
 
 #include "core/Board.hpp"
+#include "gui/RendererFacilities.hpp"
 
 namespace Tetris{
     namespace gui{
@@ -34,7 +35,6 @@ namespace Tetris{
 
             void setGameOver(const bool);
 
-            void drawBlock(QPainter&, const int, const int, const int, const QColor&);
             void drawGameOverScreen();
 
 

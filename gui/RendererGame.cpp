@@ -25,53 +25,13 @@ void Tetris::gui::RendererGame::paintGL(){
         for(int i = 0; i < m_board->getHeight(); ++i){
             for(int j = 0; j < m_board->getWidth(); ++j){
                 if(m_board->getCell(j,i) != EMPTY_CELL){
-                    drawBlock(painter, marginLeft + j * cellSize, i * cellSize, cellSize, m_board->getCharColor(m_board->getCell(j,i)));
-                    //painter.fillRect(marginLeft + j * cellSize, i * cellSize, cellSize, cellSize, QBrush(m_board->getCharColor(m_board->getCell(j,i))));
+                    Tetris::gui::RendererFacilities::drawBlock(painter, marginLeft + j * cellSize, i * cellSize, cellSize, m_board->getCharColor(m_board->getCell(j,i)));
                 }else{
                     painter.setPen(Qt::blue);
                     painter.drawRect(marginLeft + j * cellSize, i * cellSize, cellSize, cellSize);
                 }
             }
         }
-    }
-}
-
-void Tetris::gui::RendererGame::drawBlock(QPainter& painter, const int x, const int y, const int blockSize, const QColor& colour){
-    painter.fillRect(x, y, blockSize, blockSize, QBrush(colour));
-    const int trapezoidHeight = blockSize / 4;
-    // draw shiny edges
-    if(trapezoidHeight > 0){
-        QPainterPath topPath;
-        topPath.lineTo(x, y);
-        topPath.lineTo(x + blockSize,y);
-        topPath.lineTo(x + blockSize - trapezoidHeight, y + trapezoidHeight);
-        topPath.lineTo(x + trapezoidHeight, y + trapezoidHeight);
-        topPath.lineTo(x, y);
-        painter.fillPath(topPath, colour.lighter());
-
-        QPainterPath leftPath;
-        leftPath.lineTo(x,y);
-        leftPath.lineTo(x + trapezoidHeight, y + trapezoidHeight);
-        leftPath.lineTo(x + trapezoidHeight, y + blockSize - trapezoidHeight);
-        leftPath.lineTo(x, y + blockSize);
-        leftPath.lineTo(x,y);
-        painter.fillPath(leftPath, colour.darker(200));
-
-        QPainterPath rightPath;
-        rightPath.lineTo(x + blockSize, y);
-        rightPath.lineTo(x + blockSize - trapezoidHeight, y + trapezoidHeight);
-        rightPath.lineTo(x + blockSize - trapezoidHeight, y + blockSize - trapezoidHeight);
-        rightPath.lineTo(x + blockSize, y + blockSize);
-        rightPath.lineTo(x + blockSize, y);
-        painter.fillPath(rightPath, colour.darker(200));
-
-        QPainterPath bottomPath;
-        bottomPath.lineTo(x, y + blockSize);
-        bottomPath.lineTo(x + blockSize, y + blockSize);
-        bottomPath.lineTo(x + blockSize - trapezoidHeight, y + blockSize - trapezoidHeight);
-        bottomPath.lineTo(x + trapezoidHeight, y + blockSize - trapezoidHeight);
-        bottomPath.lineTo(x, y + blockSize);
-        painter.fillPath(bottomPath, colour.darker(300));
     }
 }
 

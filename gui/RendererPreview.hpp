@@ -7,6 +7,7 @@
 
 #include "core/Board.hpp"
 #include "core/Tetromino.hpp"
+#include "gui/RendererFacilities.hpp"
 
 namespace Tetris{
     namespace gui{

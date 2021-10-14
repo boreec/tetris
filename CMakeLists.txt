@@ -53,6 +53,8 @@ if(ANDROID)
     core/Tetromino_Z.hpp
     gui/MainWindow.cpp
     gui/MainWindow.hpp
+    gui/RendererFacilities.cpp
+    gui/RendererFacilities.hpp
     gui/RendererGame.cpp
     gui/RendererGame.hpp
     gui/RendererPreview.cpp
@@ -83,6 +85,8 @@ else()
     core/Tetromino_Z.hpp
     gui/MainWindow.cpp
     gui/MainWindow.hpp
+    gui/RendererFacilities.cpp
+    gui/RendererFacilities.hpp
     gui/RendererGame.cpp
     gui/RendererGame.hpp
     gui/RendererPreview.cpp

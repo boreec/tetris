@@ -28,8 +28,11 @@ namespace Tetris{
             bool canRotateCurrentPiece();
             bool isWithinBoardWidth(const int x) const;
             int removeCompletedLines();
-            void setCurrentPiece(Tetromino* t);
-            void setNextPiece(Tetromino* t);
+            void setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t);
+            void setNextPiece(std::unique_ptr<Tetris::core::Tetromino> t);
+
+            // swap next piece with current piece and set new tetromino for current piece.
+            void swapPieces(std::unique_ptr<Tetris::core::Tetromino> next);
             Tetromino* getCurrentPiece();
             Tetromino* getNextPiece();
             char getCell(const int x, const int y) const;
@@ -39,8 +42,8 @@ namespace Tetris{
             const static int WIDTH = BOARD_WIDTH;
             std::array<std::array<char, BOARD_WIDTH>, BOARD_HEIGHT> m_board;
 
-            Tetromino* m_currentPiece;
-            Tetromino* m_nextPiece;
+            std::unique_ptr<Tetris::core::Tetromino> m_currentPiece;
+            std::unique_ptr<Tetris::core::Tetromino> m_nextPiece;
         };
     }
 }

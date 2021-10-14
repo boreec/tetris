@@ -155,20 +155,25 @@ int Tetris::core::Board::removeCompletedLines(){
     return completedLines;
 }
 
-void Tetris::core::Board::setCurrentPiece(Tetromino *t){
-    m_currentPiece = t;
+void Tetris::core::Board::setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t){
+    m_currentPiece = std::move(t);
 }
 
-void Tetris::core::Board::setNextPiece(Tetromino *t){
-    m_nextPiece = t;
+void Tetris::core::Board::setNextPiece(std::unique_ptr<Tetromino> t){
+    m_nextPiece = std::move(t);
 }
 
 Tetris::core::Tetromino* Tetris::core::Board::getCurrentPiece(){
-    return m_currentPiece;
+    return m_currentPiece.get();
 }
 
 Tetris::core::Tetromino* Tetris::core::Board::getNextPiece(){
-    return m_nextPiece;
+    return m_nextPiece.get();
+}
+
+void Tetris::core::Board::swapPieces(std::unique_ptr<Tetris::core::Tetromino> next){
+    m_currentPiece = std::move(m_nextPiece);
+    m_nextPiece = std::move(next);
 }
 
 char Tetris::core::Board::getCell(const int x, const int y) const{

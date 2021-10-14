@@ -11,12 +11,8 @@
 image: theshadowx/qt5
 
 before_script:
- - apt-get update --yes
- - apt-get install --yes build-essential
- - apt-get install --yes libgl1-mesa-dev
- - apt-get install --yes cmake
- - apt-get install --yes freeglut3
-
+  - apt-get update
+  - apt-get install -y cmake
 build:
   script:
     - mkdir build

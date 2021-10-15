@@ -6,10 +6,10 @@ You can see more similar projects here: https://boreec.fr/projects/
 
 # Requirements
 
-- Qt
+- Qt >= 6.0.0
 - OpenGL
-- CMake
-- C++11 
+- CMake >= 3.5
+- C++14 
 
 # Building/Executing
 

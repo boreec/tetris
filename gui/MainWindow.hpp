@@ -71,6 +71,9 @@ namespace Tetris{
             unsigned m_level;
             unsigned m_score;
 
+            const int window_height = 600;
+
+            const int window_width = 800;
             // time between two updates in ms.
             const int time_update = 500;
 

@@ -23,10 +23,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so)
 #    endif()
 #endif()
-find_package(OpenGL)
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS OpenGL REQUIRED)
+
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS OpenGLWidgets REQUIRED)
 
 if(ANDROID)
   add_library(Tetris SHARED
@@ -94,6 +93,5 @@ else()
   )
 endif()
 
-target_link_libraries(Tetris PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(Tetris PRIVATE Qt${QT_VERSION_MAJOR}::OpenGL)
-target_link_libraries(Tetris PRIVATE OpenGL)
+target_link_libraries(Tetris PRIVATE Qt6::Widgets)
+target_link_libraries(Tetris PRIVATE Qt6::OpenGLWidgets)

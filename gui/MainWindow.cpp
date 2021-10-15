@@ -1,5 +1,5 @@
 #include "MainWindow.hpp"
-
+#include <QScreen>
 Tetris::gui::MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -16,8 +16,9 @@ Tetris::gui::MainWindow::~MainWindow()
 }
 
 void Tetris::gui::MainWindow::init_window(){
-    setFixedSize(800,600);
-    setWindowTitle(QString("My Tetris"));
+    setFixedSize(window_width,window_height);
+    setWindowTitle(QString("Tetris"));
+    move(screen()->geometry().center() - frameGeometry().center());
 }
 
 void Tetris::gui::MainWindow::init_widgets(){

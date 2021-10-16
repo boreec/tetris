@@ -8,6 +8,7 @@
 #include <QComboBox>
 #include <QKeyEvent>
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -61,7 +62,7 @@ namespace Tetris{
             QLabel m_labelLines;
             QLabel m_labelLevel;
             QLabel m_labelScore;
-
+            QMessageBox m_messageBox;
             Tetris::gui::RendererGame m_renderGame;
             Tetris::gui::RendererPreview m_renderPreview;
 

@@ -52,9 +52,19 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_comboRandomizer.addItem("7-bag randomizer");
     m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
 
+    m_messageBox.setText(QString("This application is written in C++14 with Qt6 and OpenGL libraries.\n"
+                                 "Have a look at the <a href=\"https://gitlab.com/boreec/tetris/\">source code</a>.\n"
+                                 " You can also have a look at my personal <a href=\"https://boreec.fr/projects/\">website</a>"
+                                 " where I have more projects."));
+    m_messageBox.setTextFormat(Qt::RichText);
+    m_messageBox.setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+    m_messageBox.setIcon(QMessageBox::Information);
+
     QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(change_piece_randomizer()));
     QObject::connect(&m_buttonStart, SIGNAL(clicked()), this, SLOT(init_game_area()));
     QObject::connect(&m_buttonPause, SIGNAL(clicked()), this, SLOT(pause_game()));
+    QObject::connect(&m_buttonAbout, SIGNAL(clicked()), &m_messageBox, SLOT(exec()));
 
     m_layoutButtons.addWidget(&m_buttonStart);
     m_layoutButtons.addWidget(&m_buttonPause);
@@ -81,8 +91,6 @@ void Tetris::gui::MainWindow::init_widgets(){
 }
 
 void Tetris::gui::MainWindow::init_game_area(){
-
-
    if(m_buttonStart.text() == "resume"){
        m_timer->start();
        m_buttonStart.setText("restart");

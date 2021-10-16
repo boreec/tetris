@@ -19,7 +19,13 @@ namespace Tetris{
         public:
             TetrominoFactory();
 
-            static std::unique_ptr<Tetris::core::Tetromino> generateRandomTetromino();
+            static std::unique_ptr<Tetris::core::Tetromino> UniformPieceRandomizer();
+
+            static std::unique_ptr<Tetris::core::Tetromino> BagPieceRandomizer();
+
+        private:
+
+            static std::vector<std::unique_ptr<Tetris::core::Tetromino>> m_bag;
         };
     }
 }

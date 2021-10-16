@@ -70,8 +70,8 @@ void Tetris::gui::MainWindow::init_widgets(){
 
 void Tetris::gui::MainWindow::init_game_area(){
    m_board.clear();
-   m_board.setCurrentPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
-   m_board.setNextPiece(Tetris::core::TetrominoFactory::generateRandomTetromino());
+   m_board.setCurrentPiece(Tetris::core::TetrominoFactory::BagPieceRandomizer());
+   m_board.setNextPiece(Tetris::core::TetrominoFactory::BagPieceRandomizer());
    m_renderGame.setBoard(&m_board);
    m_renderGame.setGameOver(false);
 
@@ -94,7 +94,7 @@ void Tetris::gui::MainWindow::init_game_area(){
 void Tetris::gui::MainWindow::update_game_area(){
     if(!m_board.canMoveCurrentPieceDown()){
         m_board.dropCurrentPiece();
-        m_board.swapPieces(Tetris::core::TetrominoFactory::generateRandomTetromino());
+        m_board.swapPieces(Tetris::core::TetrominoFactory::BagPieceRandomizer());
         m_renderPreview.setTetromino(m_board.getNextPiece());
         if(int l = m_board.removeCompletedLines()){
             m_lines += l;

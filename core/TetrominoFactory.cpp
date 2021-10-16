@@ -1,11 +1,13 @@
 #include "TetrominoFactory.hpp"
 
+std::vector<std::unique_ptr<Tetris::core::Tetromino>> Tetris::core::TetrominoFactory::m_bag;
+
 Tetris::core::TetrominoFactory::TetrominoFactory()
 {
 
 }
 
-std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::generateRandomTetromino(){
+std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::UniformPieceRandomizer(){
     std::unique_ptr<Tetris::core::Tetromino> ptr;
 
     // Choose a random Tetromino piece
@@ -41,5 +43,25 @@ std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::generat
             break;
     }
     ptr->setOrientation(dist4(rng));
+    return ptr;
+}
+
+std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::BagPieceRandomizer(){
+    std::unique_ptr<Tetris::core::Tetromino> ptr;
+
+    if(m_bag.empty()){
+       m_bag.push_back(std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_I()));
+       m_bag.push_back(std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_J()));
+       m_bag.push_back(std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_L()));
+       m_bag.push_back(std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_O()));
+       m_bag.push_back(std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_S()));
+       m_bag.push_back(std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_T()));
+       m_bag.push_back(std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_Z()));
+    }
+
+    if(m_bag.size() > 1)
+        std::random_shuffle(m_bag.begin(), m_bag.end());
+    ptr = std::move(m_bag.back());
+    m_bag.pop_back();
     return ptr;
 }

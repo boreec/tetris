@@ -1,5 +1,4 @@
 #include "Board.hpp"
-#include <iostream>
 
 Tetris::core::Board::Board(){
     clear();

@@ -36,6 +36,7 @@ namespace Tetris{
         public slots:
             void init_game_area();
             void update_game_area();
+            void pause_game();
             void change_piece_randomizer();
 
         private:

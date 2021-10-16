@@ -19,16 +19,18 @@ void Tetris::gui::RendererGame::paintGL(){
     QPainter painter(this);
     painter.setPen(Qt::black);
     painter.fillRect(0,0,this->width(), this->height(),QBrush(Qt::black));
+
     if(m_board){
         int cellSize = this->height() / m_board->getHeight();
         int marginLeft = (this->width() - m_board->getWidth() * cellSize) / 2;
+        int marginTop = this->height() - m_board->getHeight() * cellSize;
         for(int i = 0; i < m_board->getHeight(); ++i){
             for(int j = 0; j < m_board->getWidth(); ++j){
                 if(m_board->getCell(j,i) != EMPTY_CELL){
-                    Tetris::gui::RendererFacilities::drawBlock(painter, marginLeft + j * cellSize, i * cellSize, cellSize, m_board->getCharColor(m_board->getCell(j,i)));
+                    Tetris::gui::RendererFacilities::drawBlock(painter, marginLeft + j * cellSize, marginTop + i * cellSize, cellSize, m_board->getCharColor(m_board->getCell(j,i)));
                 }else{
                     painter.setPen(Qt::blue);
-                    painter.drawRect(marginLeft + j * cellSize, i * cellSize, cellSize, cellSize);
+                    painter.drawRect(marginLeft + j * cellSize, marginTop + i * cellSize, cellSize, cellSize);
                 }
             }
         }

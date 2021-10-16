@@ -25,7 +25,7 @@ $ mkdir build
 $ cd build
 $ cmake ..
 $ make
-$ .Tetris
+$ ./Tetris
 ```
 
 

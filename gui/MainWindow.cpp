@@ -27,6 +27,9 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_buttonPause.setText(QString("pause"));
     m_buttonAbout.setText(QString("about"));
 
+    m_labelRandomizer.setText(QString("Randomizer"));
+    m_labelRandomizer.setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
+
     m_labelNext.setText(QString("Next"));
     m_labelNext.setFont(labelFont);
     m_labelNext.setAlignment(Qt::AlignCenter | Qt::AlignBottom);
@@ -44,12 +47,19 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_labelScore.setFont(labelFont);
     m_labelScore.setAlignment(Qt::AlignCenter);
 
+    m_pieceRandomizer = Tetris::core::TetrominoFactory::UniformPieceRandomizer;
+    m_comboRandomizer.addItem("uniform randomizer");
+    m_comboRandomizer.addItem("7-bag randomizer");
+    m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
+    QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(change_piece_randomizer()));
     QObject::connect(&m_buttonStart, SIGNAL(clicked()), this, SLOT(init_game_area()));
 
     m_layoutButtons.addWidget(&m_buttonStart);
     m_layoutButtons.addWidget(&m_buttonPause);
     m_layoutButtons.addWidget(&m_buttonAbout);
 
+    m_layoutInformations.addWidget(&m_labelRandomizer);
+    m_layoutInformations.addWidget(&m_comboRandomizer);
     m_layoutInformations.addWidget(&m_labelNext);
     m_layoutInformations.addWidget(&m_renderPreview);
     m_layoutInformations.addWidget(&m_labelLines);
@@ -70,8 +80,8 @@ void Tetris::gui::MainWindow::init_widgets(){
 
 void Tetris::gui::MainWindow::init_game_area(){
    m_board.clear();
-   m_board.setCurrentPiece(Tetris::core::TetrominoFactory::BagPieceRandomizer());
-   m_board.setNextPiece(Tetris::core::TetrominoFactory::BagPieceRandomizer());
+   m_board.setCurrentPiece(m_pieceRandomizer());
+   m_board.setNextPiece(m_pieceRandomizer());
    m_renderGame.setBoard(&m_board);
    m_renderGame.setGameOver(false);
 
@@ -94,7 +104,7 @@ void Tetris::gui::MainWindow::init_game_area(){
 void Tetris::gui::MainWindow::update_game_area(){
     if(!m_board.canMoveCurrentPieceDown()){
         m_board.dropCurrentPiece();
-        m_board.swapPieces(Tetris::core::TetrominoFactory::BagPieceRandomizer());
+        m_board.swapPieces(m_pieceRandomizer());
         m_renderPreview.setTetromino(m_board.getNextPiece());
         if(int l = m_board.removeCompletedLines()){
             m_lines += l;
@@ -162,5 +172,16 @@ void Tetris::gui::MainWindow::keyReleaseEvent(QKeyEvent* e){
             m_renderGame.update();
             m_board.getCurrentPiece()->setY(m_board.getCurrentPiece()->getY() + 1);
         }
+    }
+}
+
+void Tetris::gui::MainWindow::change_piece_randomizer(){
+    if(m_comboRandomizer.currentText().contains("uniform")){
+        m_pieceRandomizer = Tetris::core::TetrominoFactory::UniformPieceRandomizer;
+    }
+    else if(m_comboRandomizer.currentText().contains("7-bag")){
+        m_pieceRandomizer = Tetris::core::TetrominoFactory::BagPieceRandomizer;
+    }else{
+        throw std::runtime_error("Unknown piece randomizer");
     }
 }

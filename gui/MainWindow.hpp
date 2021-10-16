@@ -1,9 +1,11 @@
 #pragma once
 
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include <random>
 
+#include <QComboBox>
 #include <QKeyEvent>
 #include <QMainWindow>
 #include <QPushButton>
@@ -34,6 +36,7 @@ namespace Tetris{
         public slots:
             void init_game_area();
             void update_game_area();
+            void change_piece_randomizer();
 
         private:
             /*
@@ -51,6 +54,8 @@ namespace Tetris{
             QPushButton m_buttonStart;
             QPushButton m_buttonPause;
             QPushButton m_buttonAbout;
+            QComboBox m_comboRandomizer;
+            QLabel m_labelRandomizer;
             QLabel m_labelNext;
             QLabel m_labelLines;
             QLabel m_labelLevel;
@@ -67,6 +72,7 @@ namespace Tetris{
 
             std::unique_ptr<QTimer> m_timer;
 
+            std::function<std::unique_ptr<Tetris::core::Tetromino>()> m_pieceRandomizer;
             unsigned m_lines;
             unsigned m_level;
             unsigned m_score;

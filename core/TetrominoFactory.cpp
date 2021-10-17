@@ -2,11 +2,6 @@
 
 std::vector<std::unique_ptr<Tetris::core::Tetromino>> Tetris::core::TetrominoFactory::m_bag;
 
-Tetris::core::TetrominoFactory::TetrominoFactory()
-{
-
-}
-
 std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::UniformPieceRandomizer(){
     std::unique_ptr<Tetris::core::Tetromino> ptr;
 

@@ -17,7 +17,7 @@ namespace Tetris{
     namespace core{
         class TetrominoFactory{
         public:
-            TetrominoFactory();
+            TetrominoFactory()=delete;
 
             static std::unique_ptr<Tetris::core::Tetromino> UniformPieceRandomizer();
 

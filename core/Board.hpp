@@ -8,6 +8,10 @@
 
 namespace Tetris{
     namespace core{
+
+        /**
+         * @brief Board represents the whole Tetris game area.
+         */
         class Board{
         public:
             Board();
@@ -61,12 +65,31 @@ namespace Tetris{
             char getCell(const int x, const int y) const;
             static QColor getCharColor(const char c);
 
+            /**
+             * @brief m_height is the height of the board.
+             */
             constexpr static int m_height = 22;
+
+            /**
+             * @brief m_width is the width of the board.
+             */
             constexpr static int m_width = 10;
+
         private:
+
+            /**
+             * @brief m_board is the data structure representing the Tetris board.
+             */
             std::array<std::array<char, m_width>, m_height> m_board;
 
+            /**
+             * @brief m_currentPiece corresponds to the current piece moving in the board.
+             */
             std::unique_ptr<Tetris::core::Tetromino> m_currentPiece;
+
+            /**
+             * @brief m_nextPiece correspond to the next piece that will replace the current one.
+             */
             std::unique_ptr<Tetris::core::Tetromino> m_nextPiece;
         };
     }

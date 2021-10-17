@@ -16,7 +16,7 @@ Tetris::gui::MainWindow::~MainWindow()
 }
 
 void Tetris::gui::MainWindow::init_window(){
-    setFixedSize(window_width,window_height);
+    setFixedSize(m_windowWidth, m_windowHeight);
     setWindowTitle(QString("Tetris"));
     move(screen()->geometry().center() - frameGeometry().center());
 }
@@ -133,7 +133,7 @@ void Tetris::gui::MainWindow::update_game_area(){
               m_level++;
               m_labelLevel.setText(QString("Level\n") + QString::number(m_level));
               m_timer->stop();
-              m_timer->start(time_update * std::pow(1 - time_decrease_rate, m_level));
+              m_timer->start(m_timeUpdate * std::pow(1 - m_timeDecreaseRate, m_level));
             }
         }else if(m_board.isGameOver()){
             m_renderGame.setGameOver(true);

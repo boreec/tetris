@@ -75,18 +75,42 @@ namespace Tetris{
             std::unique_ptr<QTimer> m_timer;
 
             std::function<std::unique_ptr<Tetris::core::Tetromino>()> m_pieceRandomizer;
+
+            /**
+             * @brief m_lines is the number of completed lines.
+             */
             unsigned m_lines;
+
+            /**
+             * @brief m_level is the current game level.
+             */
             unsigned m_level;
+
+            /**
+             * @brief m_score is the total score.
+             */
             unsigned m_score;
 
-            const int window_height = 600;
+            /**
+             * @brief m_windowHeight
+             */
+            const int m_windowHeight = 600;
 
-            const int window_width = 800;
-            // time between two updates in ms.
-            const int time_update = 500;
+            /**
+             * @brief m_windowWidth
+             */
+            const int m_windowWidth = 800;
 
-            // 20% speed increasement on a new level.
-            const double time_decrease_rate = 0.20;
+            /**
+             * @brief m_timeUpdate is the time in ms between two render update.
+             */
+            const int m_timeUpdate = 500;
+
+            /**
+             * @brief m_timeDecreaseRate is the update's time decrease rate.
+             */
+            const double m_timeDecreaseRate = 0.20;
+
         protected:
             void keyReleaseEvent(QKeyEvent* e) override;
         };

@@ -1,10 +1,5 @@
 #include "RendererFacilities.hpp"
 
-Tetris::gui::RendererFacilities::RendererFacilities()
-{
-
-}
-
 void Tetris::gui::RendererFacilities::drawBlock(QPainter& painter, const int x, const int y, const int blockSize, const QColor& colour){
     painter.fillRect(x, y, blockSize, blockSize, QBrush(colour));
     const int trapezoidHeight = blockSize / 4;

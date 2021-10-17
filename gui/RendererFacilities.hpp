@@ -11,7 +11,7 @@ namespace Tetris{
          */
         class RendererFacilities{
         public:
-            RendererFacilities();
+            RendererFacilities()=delete;
 
             static void drawBlock(QPainter&, const int, const int, const int, const QColor&);
         };

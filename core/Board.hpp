@@ -22,10 +22,31 @@ namespace Tetris{
             std::array<std::array<char, BOARD_WIDTH>, BOARD_HEIGHT> getBoard() const;
             void dropCurrentPiece();
             bool isGameOver() const;
-            bool canMoveCurrentPieceDown();
-            bool canMoveCurrentPieceLeft();
-            bool canMoveCurrentPieceRight();
-            bool canRotateCurrentPiece();
+
+            /**
+             * @brief canMoveCurrentPieceDown
+             * @return true if the piece can move downward.
+             */
+            bool canMoveCurrentPieceDown() const;
+
+            /**
+             * @brief canMoveCurrentPieceLeft
+             * @return true if the piece can move leftward.
+             */
+            bool canMoveCurrentPieceLeft() const;
+
+            /**
+             * @brief canMoveCurrentPieceRight
+             * @return true if the piece can move rightward.
+             */
+            bool canMoveCurrentPieceRight() const;
+
+            /**
+             * @brief canRotateCurrentPiece
+             * @return true if the piece can rotate.
+             */
+
+            bool canRotateCurrentPiece() const;
             bool isWithinBoardWidth(const int x) const;
             int removeCompletedLines();
             void setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t);

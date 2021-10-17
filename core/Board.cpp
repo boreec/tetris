@@ -27,7 +27,7 @@ bool Tetris::core::Board::isWithinBoardWidth(const int x) const{
     return x >= 0 && x < BOARD_WIDTH;
 }
 
-bool Tetris::core::Board::canMoveCurrentPieceDown(){
+bool Tetris::core::Board::canMoveCurrentPieceDown() const{
     bool canMoveDown = true;
     int row_idx, row_start;
     int col_idx = 0;
@@ -45,7 +45,7 @@ bool Tetris::core::Board::canMoveCurrentPieceDown(){
     return canMoveDown;
 }
 
-bool Tetris::core::Board::canMoveCurrentPieceLeft(){
+bool Tetris::core::Board::canMoveCurrentPieceLeft() const{
     bool canMoveLeft = true;
     int col_idx, col_start;
     int row_idx = 0;
@@ -63,7 +63,7 @@ bool Tetris::core::Board::canMoveCurrentPieceLeft(){
     return canMoveLeft;
 }
 
-bool Tetris::core::Board::canMoveCurrentPieceRight(){
+bool Tetris::core::Board::canMoveCurrentPieceRight() const{
     bool canMoveRight = true;
     int col_idx, col_start;
     int row_idx = 0;
@@ -81,7 +81,7 @@ bool Tetris::core::Board::canMoveCurrentPieceRight(){
     return canMoveRight;
 }
 
-bool Tetris::core::Board::canRotateCurrentPiece(){
+bool Tetris::core::Board::canRotateCurrentPiece() const{
     bool canRotate = true;
     int row_idx = 0, col_idx;
     while(row_idx < 4 && canRotate){

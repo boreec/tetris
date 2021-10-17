@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <iostream>
 Tetris::core::Tetromino::Tetromino():
-    m_x(5),
+    m_x(3),
     m_y(0),
     m_orientation(0)
 {

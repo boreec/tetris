@@ -16,7 +16,7 @@ const auto& Tetris::core::Board::getBoard() const{
     return m_board;
 }
 
-bool Tetris::core::Board::isWithinBoardWidth(const int x) const{
+constexpr bool Tetris::core::Board::isWithinBoardWidth(const int x){
     return x >= 0 && x < m_width;
 }
 

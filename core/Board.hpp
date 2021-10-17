@@ -43,9 +43,16 @@ namespace Tetris{
              * @brief canRotateCurrentPiece
              * @return true if the piece can rotate.
              */
-
             bool canRotateCurrentPiece() const;
-            bool isWithinBoardWidth(const int x) const;
+
+            /**
+             * @brief isWithinBoardWidth
+             * @param x an integer to check
+             * @return true if x is between 0 and board's width.
+             */
+            constexpr static bool isWithinBoardWidth(const int x);
+
+
             int removeCompletedLines();
             void setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t);
             void setNextPiece(std::unique_ptr<Tetris::core::Tetromino> t);

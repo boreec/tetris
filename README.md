@@ -4,6 +4,10 @@ This program is an amateur reproduction of the Tetris game made in C++, Qt and O
 
 You can see more similar projects here: https://boreec.fr/projects/
 
+The game actually look like this:
+
+![](https://i.imgur.com/Wc7MqXq.mp4)
+
 # Requirements
 
 - Qt >= 6.0.0
@@ -21,7 +25,7 @@ $ mkdir build
 $ cd build
 $ cmake ..
 $ make
-$ .Tetris
+$ ./Tetris
 ```
 
 

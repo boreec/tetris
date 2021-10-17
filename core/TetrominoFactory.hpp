@@ -26,6 +26,10 @@ namespace Tetris{
         private:
 
             static std::vector<std::unique_ptr<Tetris::core::Tetromino>> m_bag;
+
+            static std::random_device m_randomDevice;
+            static std::mt19937 m_randomGenerator;
+            static std::uniform_int_distribution<std::mt19937::result_type> m_orientationDist;
         };
     }
 }

@@ -2,16 +2,18 @@
 
 std::vector<std::unique_ptr<Tetris::core::Tetromino>> Tetris::core::TetrominoFactory::m_bag;
 
+std::random_device Tetris::core::TetrominoFactory::m_randomDevice;
+
+std::mt19937 Tetris::core::TetrominoFactory::m_randomGenerator(m_randomDevice());
+
+std::uniform_int_distribution<std::mt19937::result_type> Tetris::core::TetrominoFactory::m_orientationDist(0, 4);
+
 std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::UniformPieceRandomizer(){
     std::unique_ptr<Tetris::core::Tetromino> ptr;
 
-    // Choose a random Tetromino piece
-    std::random_device dev;
-    std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> distTetromino(0, 7);
-    std::uniform_int_distribution<std::mt19937::result_type> dist4(0,4);
 
-    switch(distTetromino(rng)){
+    switch(distTetromino(m_randomGenerator)){
         case 0:
             ptr = std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_T());
             break;
@@ -37,7 +39,7 @@ std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::Uniform
             ptr = std::unique_ptr<Tetris::core::Tetromino>(new Tetromino_T());
             break;
     }
-    ptr->setOrientation(dist4(rng));
+    ptr->setOrientation(m_orientationDist(m_randomGenerator));
     return ptr;
 }
 
@@ -55,8 +57,9 @@ std::unique_ptr<Tetris::core::Tetromino> Tetris::core::TetrominoFactory::BagPiec
     }
 
     if(m_bag.size() > 1)
-        std::random_shuffle(m_bag.begin(), m_bag.end());
+        std::shuffle(m_bag.begin(), m_bag.end(), m_randomGenerator);
     ptr = std::move(m_bag.back());
     m_bag.pop_back();
+    ptr->setOrientation(m_orientationDist(m_randomGenerator));
     return ptr;
 }

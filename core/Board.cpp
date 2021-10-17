@@ -6,25 +6,18 @@ Tetris::core::Board::Board(){
 
 void Tetris::core::Board::clear(){
     // Put a '.' char in every board's cell to represent emptiness.
-    for(int i = 0; i < HEIGHT; ++i){
+    for(int i = 0; i < m_height; ++i){
         std::fill(m_board[i].begin(), m_board[i].end(), EMPTY_CELL);
     }
 }
 
-int Tetris::core::Board::getHeight() const{
-    return HEIGHT;
-}
 
-int Tetris::core::Board::getWidth() const{
-    return WIDTH;
-}
-
-std::array<std::array<char, BOARD_WIDTH>, BOARD_HEIGHT> Tetris::core::Board::getBoard() const{
+const auto& Tetris::core::Board::getBoard() const{
     return m_board;
 }
 
 bool Tetris::core::Board::isWithinBoardWidth(const int x) const{
-    return x >= 0 && x < BOARD_WIDTH;
+    return x >= 0 && x < m_width;
 }
 
 bool Tetris::core::Board::canMoveCurrentPieceDown() const{
@@ -38,7 +31,7 @@ bool Tetris::core::Board::canMoveCurrentPieceDown() const{
             --row_idx;
         }
         if(row_start != -1){
-            canMoveDown = m_currentPiece->getY() + row_start + 1 < BOARD_HEIGHT && m_board[m_currentPiece->getY() + row_start + 1][m_currentPiece->getX() + col_idx] == EMPTY_CELL;
+            canMoveDown = m_currentPiece->getY() + row_start + 1 < m_height && m_board[m_currentPiece->getY() + row_start + 1][m_currentPiece->getX() + col_idx] == EMPTY_CELL;
         }
         col_idx++;
     }
@@ -74,7 +67,7 @@ bool Tetris::core::Board::canMoveCurrentPieceRight() const{
             col_idx--;
         }
         if(col_start != -1){
-            canMoveRight = m_currentPiece->getX() + col_start + 1 < BOARD_WIDTH && m_board[m_currentPiece->getY() + row_idx][m_currentPiece->getX() + col_start + 1] == EMPTY_CELL;
+            canMoveRight = m_currentPiece->getX() + col_start + 1 < m_width && m_board[m_currentPiece->getY() + row_idx][m_currentPiece->getX() + col_start + 1] == EMPTY_CELL;
         }
         row_idx++;
     }
@@ -99,7 +92,7 @@ void Tetris::core::Board::dropCurrentPiece(){
         for(int j = 0; j < 4; ++j){
             if(isWithinBoardWidth(m_currentPiece->getX() + j) &&
                     m_currentPiece->getY() + i >= 0 &&
-                    m_currentPiece->getY() + i - 1 < BOARD_HEIGHT &&
+                    m_currentPiece->getY() + i - 1 < m_height &&
                     m_currentPiece->getPiece()[i][j] != EMPTY_CELL){
                 m_board[m_currentPiece->getY() + i][m_currentPiece->getX() + j] = m_currentPiece->getPiece()[i][j];
             }
@@ -114,7 +107,7 @@ bool Tetris::core::Board::isGameOver() const{
         int col_idx = 0;
         while(col_idx < 4 && !overlap){
             overlap = (isWithinBoardWidth(m_currentPiece->getX() + col_idx) &&
-                       m_currentPiece->getY() + row_idx >= 0 && m_currentPiece->getY() + row_idx < BOARD_HEIGHT) ?
+                       m_currentPiece->getY() + row_idx >= 0 && m_currentPiece->getY() + row_idx < m_height) ?
                        m_board[m_currentPiece->getY() + row_idx][m_currentPiece->getX() + col_idx] != EMPTY_CELL : false;
             ++col_idx;
         }
@@ -127,13 +120,13 @@ int Tetris::core::Board::removeCompletedLines(){
     int completedLines = 0;
     int rowStart= -1;
     int row_idx = 0;
-    while(row_idx < BOARD_HEIGHT){
+    while(row_idx < m_height){
         int col_idx = 0;
-        while(col_idx < BOARD_WIDTH && m_board[row_idx][col_idx] != EMPTY_CELL){
+        while(col_idx < m_width && m_board[row_idx][col_idx] != EMPTY_CELL){
             ++col_idx;
         }
         //line filled!
-        if(col_idx >= BOARD_WIDTH){
+        if(col_idx >= m_width){
             rowStart = !completedLines ? row_idx : rowStart;
             ++completedLines;
         }
@@ -144,9 +137,9 @@ int Tetris::core::Board::removeCompletedLines(){
         assert(completedLines >= 1 && completedLines <= 4);
         for(int i = rowStart + completedLines - 1; i > completedLines; --i){
             if(i <= completedLines){
-                for(int j = 0; j < BOARD_WIDTH; ++j){m_board[i][j] = EMPTY_CELL;}
+                for(int j = 0; j < m_width; ++j){m_board[i][j] = EMPTY_CELL;}
                 continue;
-            }for(int j = 0; j < BOARD_WIDTH; ++j){
+            }for(int j = 0; j < m_width; ++j){
                 m_board[i][j] = m_board[i - completedLines][j];
             }
         }

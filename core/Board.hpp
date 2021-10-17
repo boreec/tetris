@@ -6,9 +6,6 @@
 #include <cassert>
 #include <QColor>
 
-#define BOARD_WIDTH 10
-#define BOARD_HEIGHT 22
-
 namespace Tetris{
     namespace core{
         class Board{

@@ -57,6 +57,8 @@ namespace Tetris{
             QPushButton m_buttonPause;
             QPushButton m_buttonAbout;
             QComboBox m_comboRandomizer;
+            QComboBox m_comboLanguage;
+            QLabel m_labelLanguage;
             QLabel m_labelRandomizer;
             QLabel m_labelNext;
             QLabel m_labelLines;
@@ -67,6 +69,8 @@ namespace Tetris{
             Tetris::gui::RendererPreview m_renderPreview;
 
             QHBoxLayout m_layoutMain;
+            QHBoxLayout m_layoutRandomizer;
+            QHBoxLayout m_layoutLanguage;
             QVBoxLayout m_layoutInformations;
             QHBoxLayout m_layoutButtons;
 

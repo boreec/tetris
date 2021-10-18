@@ -28,7 +28,7 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_buttonAbout.setText(QString("about"));
 
     m_labelRandomizer.setText(QString("Randomizer"));
-    m_labelRandomizer.setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
+    m_labelRandomizer.setAlignment(Qt::AlignLeft);
 
     m_labelNext.setText(QString("Next"));
     m_labelNext.setFont(labelFont);
@@ -47,10 +47,26 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_labelScore.setFont(labelFont);
     m_labelScore.setAlignment(Qt::AlignCenter);
 
+    m_labelLanguage.setText(QString("Language"));
+    m_labelLanguage.setAlignment(Qt::AlignLeft);
+
+    m_comboLanguage.setFixedWidth(150);
+    m_comboLanguage.addItem("english");
+    m_comboLanguage.addItem("français");
+    m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
+
+
+    m_layoutLanguage.addWidget(&m_labelLanguage);
+    m_layoutLanguage.addWidget(&m_comboLanguage);
+
     m_pieceRandomizer = Tetris::core::TetrominoFactory::UniformPieceRandomizer;
     m_comboRandomizer.addItem("uniform randomizer");
     m_comboRandomizer.addItem("7-bag randomizer");
     m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
+    m_comboRandomizer.setFixedWidth(150);
+
+    m_layoutRandomizer.addWidget(&m_labelRandomizer);
+    m_layoutRandomizer.addWidget(&m_comboRandomizer);
 
     m_messageBox.setText(QString("This application is written in C++14 with Qt6 and OpenGL libraries.\n"
                                  "Have a look at the <a href=\"https://gitlab.com/boreec/tetris/\">source code</a>.\n"
@@ -70,8 +86,8 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_layoutButtons.addWidget(&m_buttonPause);
     m_layoutButtons.addWidget(&m_buttonAbout);
 
-    m_layoutInformations.addWidget(&m_labelRandomizer);
-    m_layoutInformations.addWidget(&m_comboRandomizer);
+    m_layoutInformations.addLayout(&m_layoutLanguage);
+    m_layoutInformations.addLayout(&m_layoutRandomizer);
     m_layoutInformations.addWidget(&m_labelNext);
     m_layoutInformations.addWidget(&m_renderPreview);
     m_layoutInformations.addWidget(&m_labelLines);

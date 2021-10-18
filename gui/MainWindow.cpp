@@ -20,65 +20,77 @@ void Tetris::gui::MainWindow::initWindow(){
 }
 
 void Tetris::gui::MainWindow::initWidgets(){
+    /* Initialize private members related to game. */
+    m_pieceRandomizer = Tetris::core::TetrominoFactory::UniformPieceRandomizer;
+    m_timer = std::make_unique<QTimer>(this);
+
+    /* Initialize game labels. */
     QFont labelFont("Courier", 12, QFont::Bold);
+    m_labelNext.setText(QString("Next"));
+    m_labelNext.setFont(labelFont);
+    m_labelLines.setText(QString("Lines\n0"));
+    m_labelLines.setFont(labelFont);
+    m_labelLevel.setText(QString("Level\n0"));
+    m_labelLevel.setFont(labelFont);
+    m_labelScore.setText(QString("Score\n0"));
+    m_labelScore.setFont(labelFont);
+
+    /* Initialize option labels. */
+    m_labelRandomizer.setText(QString("Randomizer"));
+    m_labelLanguage.setText(QString("Language"));
+
+    /* Initialize option combo boxes. */
+    m_comboLanguage.addItem("english");
+    m_comboLanguage.addItem("français");
+    m_comboRandomizer.addItem("uniform randomizer");
+    m_comboRandomizer.addItem("7-bag randomizer");
+
+    /* Initialize buttons */
     m_buttonStart.setText(QString("start"));
     m_buttonPause.setText(QString("pause"));
     m_buttonAbout.setText(QString("about"));
 
-    m_labelRandomizer.setText(QString("Randomizer"));
-    m_labelRandomizer.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-
-    m_labelNext.setText(QString("Next"));
-    m_labelNext.setFont(labelFont);
-    m_labelNext.setAlignment(Qt::AlignCenter | Qt::AlignBottom);
-
-    m_labelLines.setText(QString("Lines\n0"));
-    m_labelLines.setFont(labelFont);
-    m_labelLines.setAlignment(Qt::AlignCenter);
-
-
-    m_labelLevel.setText(QString("Level\n0"));
-    m_labelLevel.setFont(labelFont);
-    m_labelLevel.setAlignment(Qt::AlignCenter);
-
-    m_labelScore.setText(QString("Score\n0"));
-    m_labelScore.setFont(labelFont);
-    m_labelScore.setAlignment(Qt::AlignCenter);
-
-    m_labelLanguage.setText(QString("Language"));
-    m_labelLanguage.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-
-    m_comboLanguage.setFixedWidth(m_comboBoxWidth);
-    m_comboLanguage.addItem("english");
-    m_comboLanguage.addItem("français");
-    m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
-
-
-    m_layoutLanguage.addWidget(&m_labelLanguage);
-    m_layoutLanguage.addWidget(&m_comboLanguage);
-
-    m_pieceRandomizer = Tetris::core::TetrominoFactory::UniformPieceRandomizer;
-    m_comboRandomizer.addItem("uniform randomizer");
-    m_comboRandomizer.addItem("7-bag randomizer");
-    m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
-    m_comboRandomizer.setFixedWidth(m_comboBoxWidth);
-
-    m_layoutRandomizer.addWidget(&m_labelRandomizer);
-    m_layoutRandomizer.addWidget(&m_comboRandomizer);
-
+    /* Initialize message box in about button. */
     m_messageBox.setText(QString("This application is written in C++14 with Qt6 and OpenGL libraries.\n"
                                  "Have a look at the <a href=\"https://gitlab.com/boreec/tetris/\">source code</a>.\n"
                                  " You can also have a look at my personal <a href=\"https://boreec.fr/projects/\">website</a>"
                                  " where I have more projects."));
     m_messageBox.setTextFormat(Qt::RichText);
     m_messageBox.setTextInteractionFlags(Qt::TextBrowserInteraction);
-
     m_messageBox.setIcon(QMessageBox::Information);
 
+    /* Align game labels on the center. */
+    m_labelNext.setAlignment(Qt::AlignCenter | Qt::AlignBottom);
+    m_labelLines.setAlignment(Qt::AlignCenter);
+    m_labelLevel.setAlignment(Qt::AlignCenter);
+    m_labelScore.setAlignment(Qt::AlignCenter);
+
+    /* Align option labels on the left. */
+    m_labelRandomizer.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    m_labelLanguage.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+
+    /* Set option combo boxes width. */
+    m_comboLanguage.setFixedWidth(m_comboBoxWidth);
+    m_comboRandomizer.setFixedWidth(m_comboBoxWidth);
+
+    /* Set option combo boxes focus policies. */
+    m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
+    m_comboLanguage.setFocusPolicy(Qt::FocusPolicy::NoFocus);
+
+    /* Horizontal layout for language widgets. */
+    m_layoutLanguage.addWidget(&m_labelLanguage);
+    m_layoutLanguage.addWidget(&m_comboLanguage);
+
+    /* Horizontal layout for randomizer widgets. */
+    m_layoutRandomizer.addWidget(&m_labelRandomizer);
+    m_layoutRandomizer.addWidget(&m_comboRandomizer);
+
+    /* Horizontal layout for buttons. */
     m_layoutButtons.addWidget(&m_buttonStart);
     m_layoutButtons.addWidget(&m_buttonPause);
     m_layoutButtons.addWidget(&m_buttonAbout);
 
+    /* Vertical layout gathering language, randomizer, game labels, and buttons layouts. */
     m_layoutInformations.addLayout(&m_layoutLanguage);
     m_layoutInformations.addLayout(&m_layoutRandomizer);
     m_layoutInformations.addWidget(&m_labelNext);
@@ -88,17 +100,19 @@ void Tetris::gui::MainWindow::initWidgets(){
     m_layoutInformations.addWidget(&m_labelScore);
     m_layoutInformations.addLayout(&m_layoutButtons);
 
+    /* Set size of game rendering widget 2/3 of window's width. */
     QSizePolicy spLeft(QSizePolicy::Preferred, QSizePolicy::Preferred);
     spLeft.setHorizontalStretch(2);
     m_renderGame.setSizePolicy(spLeft);
+
+    /* Vertical layout for main layout. */
     m_layoutMain.addWidget(&m_renderGame);
     m_layoutMain.addLayout(&m_layoutInformations);
 
+    // add Vertical layout to the main widget.
     m_mainWidget = std::make_unique<QWidget>();
     m_mainWidget->setLayout(&m_layoutMain);
     setFocusPolicy(Qt::TabFocus);
-
-    m_timer = std::unique_ptr<QTimer>(new QTimer(this));
     this->setCentralWidget(m_mainWidget.get());
 }
 

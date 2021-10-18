@@ -93,12 +93,13 @@ void Tetris::gui::MainWindow::initWidgets(){
     m_renderGame.setSizePolicy(spLeft);
     m_layoutMain.addWidget(&m_renderGame);
     m_layoutMain.addLayout(&m_layoutInformations);
-    QWidget* main_widget = new QWidget();
-    main_widget->setLayout(&m_layoutMain);
+
+    m_mainWidget = std::make_unique<QWidget>();
+    m_mainWidget->setLayout(&m_layoutMain);
     setFocusPolicy(Qt::TabFocus);
 
     m_timer = std::unique_ptr<QTimer>(new QTimer(this));
-    this->setCentralWidget(main_widget);
+    this->setCentralWidget(m_mainWidget.get());
 }
 
 void Tetris::gui::MainWindow::connectWidgets(){

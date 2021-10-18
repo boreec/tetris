@@ -35,21 +35,21 @@ namespace Tetris{
             ~MainWindow();
 
         public slots:
-            void init_game_area();
-            void update_game_area();
-            void pause_game();
-            void change_piece_randomizer();
+            void initGameArea();
+            void updateGameArea();
+            void pauseGame();
+            void changePiecePandomizer();
 
         private:
             /*
              * Initialize window' properties (size, position...).
              * */
-            void init_window();
+            void initWindow();
 
             /*
              * Initialize window' widget' properties.
              * */
-            void init_widgets();
+            void initWidgets();
 
             void addScore(const int);
 

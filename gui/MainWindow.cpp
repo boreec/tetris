@@ -3,8 +3,8 @@
 Tetris::gui::MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    init_widgets();
-    init_window();
+    initWidgets();
+    initWindow();
 
     m_timer = std::unique_ptr<QTimer>(new QTimer(this));
     connectWidgets();
@@ -15,13 +15,13 @@ Tetris::gui::MainWindow::~MainWindow()
 
 }
 
-void Tetris::gui::MainWindow::init_window(){
+void Tetris::gui::MainWindow::initWindow(){
     setFixedSize(m_windowWidth, m_windowHeight);
     setWindowTitle(QString("Tetris"));
     move(screen()->geometry().center() - frameGeometry().center());
 }
 
-void Tetris::gui::MainWindow::init_widgets(){
+void Tetris::gui::MainWindow::initWidgets(){
     QFont labelFont("Courier", 12, QFont::Bold);
     m_buttonStart.setText(QString("start"));
     m_buttonPause.setText(QString("pause"));
@@ -102,14 +102,15 @@ void Tetris::gui::MainWindow::init_widgets(){
 }
 
 void Tetris::gui::MainWindow::connectWidgets(){
-    QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(change_piece_randomizer()));
-    QObject::connect(&m_buttonStart, SIGNAL(clicked()), this, SLOT(init_game_area()));
-    QObject::connect(&m_buttonPause, SIGNAL(clicked()), this, SLOT(pause_game()));
+    //QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(changePieceRandomizer()));
+    QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(changePiecePandomizer()));
+    QObject::connect(&m_buttonStart, SIGNAL(clicked()), this, SLOT(initGameArea()));
+    QObject::connect(&m_buttonPause, SIGNAL(clicked()), this, SLOT(pauseGame()));
     QObject::connect(&m_buttonAbout, SIGNAL(clicked()), &m_messageBox, SLOT(exec()));
-    QObject::connect(m_timer.get(), SIGNAL(timeout()), this, SLOT(update_game_area()));
+    QObject::connect(m_timer.get(), SIGNAL(timeout()), this, SLOT(updateGameArea()));
 }
 
-void Tetris::gui::MainWindow::init_game_area(){
+void Tetris::gui::MainWindow::initGameArea(){
    if(m_buttonStart.text() == "resume"){
        m_timer->start();
        m_buttonStart.setText("restart");
@@ -137,7 +138,7 @@ void Tetris::gui::MainWindow::init_game_area(){
    }
 }
 
-void Tetris::gui::MainWindow::update_game_area(){
+void Tetris::gui::MainWindow::updateGameArea(){
     if(!m_board.canMoveCurrentPieceDown()){
         m_board.dropCurrentPiece();
         m_board.swapPieces(m_pieceRandomizer());
@@ -211,12 +212,11 @@ void Tetris::gui::MainWindow::keyReleaseEvent(QKeyEvent* e){
     }
 }
 
-void Tetris::gui::MainWindow::pause_game(){
+void Tetris::gui::MainWindow::pauseGame(){
     m_timer->stop();
     m_buttonStart.setText("resume");
 }
-
-void Tetris::gui::MainWindow::change_piece_randomizer(){
+void Tetris::gui::MainWindow::changePiecePandomizer(){
     if(m_comboRandomizer.currentText().contains("uniform")){
         m_pieceRandomizer = Tetris::core::TetrominoFactory::UniformPieceRandomizer;
     }

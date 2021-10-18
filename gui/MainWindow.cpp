@@ -7,7 +7,7 @@ Tetris::gui::MainWindow::MainWindow(QWidget *parent)
     init_window();
 
     m_timer = std::unique_ptr<QTimer>(new QTimer(this));
-    connect(m_timer.get(), SIGNAL(timeout()), this, SLOT(update_game_area()));
+    connectWidgets();
 }
 
 Tetris::gui::MainWindow::~MainWindow()
@@ -77,11 +77,6 @@ void Tetris::gui::MainWindow::init_widgets(){
 
     m_messageBox.setIcon(QMessageBox::Information);
 
-    QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(change_piece_randomizer()));
-    QObject::connect(&m_buttonStart, SIGNAL(clicked()), this, SLOT(init_game_area()));
-    QObject::connect(&m_buttonPause, SIGNAL(clicked()), this, SLOT(pause_game()));
-    QObject::connect(&m_buttonAbout, SIGNAL(clicked()), &m_messageBox, SLOT(exec()));
-
     m_layoutButtons.addWidget(&m_buttonStart);
     m_layoutButtons.addWidget(&m_buttonPause);
     m_layoutButtons.addWidget(&m_buttonAbout);
@@ -104,6 +99,14 @@ void Tetris::gui::MainWindow::init_widgets(){
     main_widget->setLayout(&m_layoutMain);
     setFocusPolicy(Qt::TabFocus);
     this->setCentralWidget(main_widget);
+}
+
+void Tetris::gui::MainWindow::connectWidgets(){
+    QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(change_piece_randomizer()));
+    QObject::connect(&m_buttonStart, SIGNAL(clicked()), this, SLOT(init_game_area()));
+    QObject::connect(&m_buttonPause, SIGNAL(clicked()), this, SLOT(pause_game()));
+    QObject::connect(&m_buttonAbout, SIGNAL(clicked()), &m_messageBox, SLOT(exec()));
+    QObject::connect(m_timer.get(), SIGNAL(timeout()), this, SLOT(update_game_area()));
 }
 
 void Tetris::gui::MainWindow::init_game_area(){

@@ -53,6 +53,11 @@ namespace Tetris{
 
             void addScore(const int);
 
+            /**
+             * @brief connectWidgets gathers every connection for widgets and their signals.
+             */
+            void connectWidgets();
+
             QPushButton m_buttonStart;
             QPushButton m_buttonPause;
             QPushButton m_buttonAbout;

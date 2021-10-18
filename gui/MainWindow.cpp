@@ -28,7 +28,7 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_buttonAbout.setText(QString("about"));
 
     m_labelRandomizer.setText(QString("Randomizer"));
-    m_labelRandomizer.setAlignment(Qt::AlignLeft);
+    m_labelRandomizer.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
     m_labelNext.setText(QString("Next"));
     m_labelNext.setFont(labelFont);
@@ -48,9 +48,9 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_labelScore.setAlignment(Qt::AlignCenter);
 
     m_labelLanguage.setText(QString("Language"));
-    m_labelLanguage.setAlignment(Qt::AlignLeft);
+    m_labelLanguage.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
-    m_comboLanguage.setFixedWidth(150);
+    m_comboLanguage.setFixedWidth(m_comboBoxWidth);
     m_comboLanguage.addItem("english");
     m_comboLanguage.addItem("français");
     m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
@@ -63,7 +63,7 @@ void Tetris::gui::MainWindow::init_widgets(){
     m_comboRandomizer.addItem("uniform randomizer");
     m_comboRandomizer.addItem("7-bag randomizer");
     m_comboRandomizer.setFocusPolicy(Qt::FocusPolicy::NoFocus);
-    m_comboRandomizer.setFixedWidth(150);
+    m_comboRandomizer.setFixedWidth(m_comboBoxWidth);
 
     m_layoutRandomizer.addWidget(&m_labelRandomizer);
     m_layoutRandomizer.addWidget(&m_comboRandomizer);

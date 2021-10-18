@@ -115,6 +115,11 @@ namespace Tetris{
              */
             const double m_timeDecreaseRate = 0.20;
 
+            /**
+             * @brief m_comboBoxWidth is the width used for comboxBox widgets.
+             */
+            const int m_comboBoxWidth = 150;
+
         protected:
             void keyReleaseEvent(QKeyEvent* e) override;
         };

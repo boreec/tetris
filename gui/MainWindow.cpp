@@ -110,10 +110,10 @@ void Tetris::gui::MainWindow::initWidgets(){
     m_layoutMain.addLayout(&m_layoutInformations);
 
     // add Vertical layout to the main widget.
-    m_mainWidget = std::make_unique<QWidget>();
-    m_mainWidget->setLayout(&m_layoutMain);
+    QWidget* mainWidget = new QWidget(); // MainWindow will delete it
+    mainWidget->setLayout(&m_layoutMain);
     setFocusPolicy(Qt::TabFocus);
-    this->setCentralWidget(m_mainWidget.get());
+    this->setCentralWidget(mainWidget);
 }
 
 void Tetris::gui::MainWindow::connectWidgets(){

@@ -85,8 +85,6 @@ namespace Tetris{
 
             std::function<std::unique_ptr<Tetris::core::Tetromino>()> m_pieceRandomizer;
 
-            std::unique_ptr<QWidget> m_mainWidget;
-
             /**
              * @brief m_lines is the number of completed lines.
              */

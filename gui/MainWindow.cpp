@@ -3,10 +3,8 @@
 Tetris::gui::MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    initWidgets();
     initWindow();
-
-    m_timer = std::unique_ptr<QTimer>(new QTimer(this));
+    initWidgets();
     connectWidgets();
 }
 
@@ -98,11 +96,12 @@ void Tetris::gui::MainWindow::initWidgets(){
     QWidget* main_widget = new QWidget();
     main_widget->setLayout(&m_layoutMain);
     setFocusPolicy(Qt::TabFocus);
+
+    m_timer = std::unique_ptr<QTimer>(new QTimer(this));
     this->setCentralWidget(main_widget);
 }
 
 void Tetris::gui::MainWindow::connectWidgets(){
-    //QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(changePieceRandomizer()));
     QObject::connect(&m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(changePiecePandomizer()));
     QObject::connect(&m_buttonStart, SIGNAL(clicked()), this, SLOT(initGameArea()));
     QObject::connect(&m_buttonPause, SIGNAL(clicked()), this, SLOT(pauseGame()));

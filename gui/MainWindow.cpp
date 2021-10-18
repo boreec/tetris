@@ -148,7 +148,7 @@ void Tetris::gui::MainWindow::initGameArea(){
        m_labelScore.setText(QString("Score\n0"));
 
        m_timer->stop();
-       m_timer->start(500);
+       m_timer->start(m_timeUpdate);
    }
 }
 
@@ -230,6 +230,7 @@ void Tetris::gui::MainWindow::pauseGame(){
     m_timer->stop();
     m_buttonStart.setText("resume");
 }
+
 void Tetris::gui::MainWindow::changePiecePandomizer(){
     if(m_comboRandomizer.currentText().contains("uniform")){
         m_pieceRandomizer = Tetris::core::TetrominoFactory::UniformPieceRandomizer;

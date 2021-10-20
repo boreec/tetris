@@ -34,6 +34,7 @@ void Tetris::gui::MainWindow::initWidgets(){
     m_labelLevel->setFont(labelFont);
     m_labelScore = new QLabel("Score\n0", this);
     m_labelScore->setText(QString("Score\n0"));
+    m_labelScore->setFont((labelFont));
 
     /* Initialize option labels. */
     m_labelRandomizer = new QLabel("Randomizer", this);

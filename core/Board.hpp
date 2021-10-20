@@ -53,8 +53,20 @@ namespace Tetris{
              */
             constexpr static bool isWithinBoardWidth(const int x);
 
+            /**
+             * @brief hasCompletedLines will check if there are lines full.
+             * @return a pair of positive integers corresponding to the range of
+             * completed lines, {0, 0} otherwise.
+             */
+            std::pair<int, int> hasCompletedLines() const;
 
-            int removeCompletedLines();
+            /**
+             * @brief clearLines will put empty cells in the given rows range.
+             * @param range is the range of rows to clear.
+             */
+            void clearLines(std::pair<int, int> range);
+
+
             void setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t);
             void setNextPiece(std::unique_ptr<Tetris::core::Tetromino> t);
 

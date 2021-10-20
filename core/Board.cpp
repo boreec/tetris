@@ -116,36 +116,33 @@ bool Tetris::core::Board::isGameOver() const{
     return overlap;
 }
 
-int Tetris::core::Board::removeCompletedLines(){
-    int completedLines = 0;
-    int rowStart= -1;
-    int row_idx = 0;
-    while(row_idx < m_height){
-        int col_idx = 0;
-        while(col_idx < m_width && m_board[row_idx][col_idx] != EMPTY_CELL){
-            ++col_idx;
-        }
-        //line filled!
-        if(col_idx >= m_width){
-            rowStart = !completedLines ? row_idx : rowStart;
-            ++completedLines;
-        }
-        ++row_idx;
-    }
-    // clear lines by overwritting with above
-    if(completedLines){
-        assert(completedLines >= 1 && completedLines <= 4);
-        for(int i = rowStart + completedLines - 1; i > completedLines; --i){
-            if(i <= completedLines){
-                for(int j = 0; j < m_width; ++j){m_board[i][j] = EMPTY_CELL;}
-                continue;
-            }for(int j = 0; j < m_width; ++j){
-                m_board[i][j] = m_board[i - completedLines][j];
-            }
+std::pair<int, int> Tetris::core::Board::hasCompletedLines() const{
+    int completeLines = 0;
+    int completeBegin = 0;
+    for(int row_idx = 0; row_idx < m_height; ++row_idx){
+        auto it = std::find(m_board[row_idx].begin(), m_board[row_idx].end(), EMPTY_CELL);
+        if(it == m_board[row_idx].end()){ // line complete
+            completeBegin = !completeLines ? row_idx : completeBegin;
+            ++completeLines;
+        }else{
+            continue;
         }
     }
-    return completedLines;
+    return completeLines ? std::pair<int, int>(completeBegin, completeBegin+completeLines) : std::pair<int, int>(0,0);
 }
+
+void Tetris::core::Board::clearLines(std::pair<int, int> range){
+    int completedLines = range.second - range.first;
+    for(int i = range.first + completedLines - 1; i > completedLines; --i){
+        if(i <= completedLines){
+            for(int j = 0; j < m_width; ++j){m_board[i][j] = EMPTY_CELL;}
+            continue;
+        }for(int j = 0; j < m_width; ++j){
+            m_board[i][j] = m_board[i - completedLines][j];
+        }
+    }
+}
+
 
 void Tetris::core::Board::setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t){
     m_currentPiece = std::move(t);

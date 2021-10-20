@@ -171,18 +171,20 @@ void Tetris::gui::MainWindow::updateGameArea(){
         m_board.dropCurrentPiece();
         m_board.swapPieces(m_pieceRandomizer());
         m_renderPreview->setTetromino(m_board.getNextPiece());
-        if(int l = m_board.removeCompletedLines()){
-            m_lines += l;
-            addScore(l);
+
+        if(auto completedRange = m_board.hasCompletedLines(); completedRange.first && completedRange.second){
+            m_lines += completedRange.second - completedRange.first;
+            addScore(completedRange.second - completedRange.first);
             m_labelLines->setText(QString("Lines\n") + QString::number(m_lines));
             m_labelScore->setText(QString("Score\n") + QString::number(m_score));
-
-            if(m_lines / 10 > (m_lines - l) / 10){
+            if(m_lines / 10 > (m_lines - (completedRange.second - completedRange.first)) / 10){
               m_level++;
               m_labelLevel->setText(QString("Level\n") + QString::number(m_level));
               m_timer->stop();
               m_timer->start(m_timeUpdate * std::pow(1 - m_timeDecreaseRate, m_level));
             }
+            // todo: add blinking animation on completed lines.
+            m_board.clearLines(completedRange);
         }else if(m_board.isGameOver()){
             m_renderGame->setGameOver(true);
             m_renderGame->update();

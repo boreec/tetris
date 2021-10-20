@@ -87,6 +87,7 @@ bool Tetris::core::Board::canRotateCurrentPiece() const{
     }
     return canRotate;
 }
+
 void Tetris::core::Board::dropCurrentPiece(){
     for(int i = 0; i < 4; ++i){
         for(int j = 0; j < 4; ++j){
@@ -142,7 +143,6 @@ void Tetris::core::Board::clearLines(std::pair<int, int> range){
         }
     }
 }
-
 
 void Tetris::core::Board::setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t){
     m_currentPiece = std::move(t);

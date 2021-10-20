@@ -66,7 +66,11 @@ namespace Tetris{
              */
             void clearLines(std::pair<int, int> range);
 
-
+            /**
+             * @brief setCurrentPiece sets the given Tetromino piece as the current moving piece.
+             * @class Board will own the given Tetromino pointer.
+             * @param t is the new Tetromino.
+             */
             void setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t);
             void setNextPiece(std::unique_ptr<Tetris::core::Tetromino> t);
 

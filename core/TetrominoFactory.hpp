@@ -15,12 +15,31 @@
 
 namespace Tetris{
     namespace core{
+        /**
+         * @brief The TetrominoFactory generates Tetromino randomly.
+         */
         class TetrominoFactory{
         public:
-            TetrominoFactory()=delete;
 
+            /**
+             * @brief TetrominoFactory's constructor is inexistant because
+             * this is a static class.
+             */
+            TetrominoFactory() = delete;
+
+            /**
+             * @brief UniformPieceRandomizer generates a random piece, with
+             * the same probability for every piece (uniform distribution).
+             * @return a random Tetromino piece as a unique_ptr.
+             */
             static std::unique_ptr<Tetris::core::Tetromino> UniformPieceRandomizer();
 
+            /**
+             * @brief BagPieceRandomizer generates a random piece with a bag approach.
+             * Every piece is inserted into the bag once, and one is removed randomly
+             * when a piece's needed. When the bag is empty, it is filled again.
+             * @return a random Tetromino piece as a unique_ptr.
+             */
             static std::unique_ptr<Tetris::core::Tetromino> BagPieceRandomizer();
 
         private:

@@ -20,6 +20,11 @@ namespace Tetris{
 
             const auto& getBoard() const;
             void dropCurrentPiece();
+
+            /**
+             * @brief isGameOver checks if the board spawn pieces anymore.
+             * @return true if the board is in a game over state.
+             */
             bool isGameOver() const;
 
             /**

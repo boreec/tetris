@@ -58,7 +58,12 @@ namespace Tetris{
 
             std::array<std::array<char,4>,4> getPiece() const;
 
-            void setOrientation(const int);
+            /**
+             * @brief setOrientation defines the piece's rotation state
+             * @param rotation is the rotation state and must be between 0 and 3 included.
+             */
+            void setOrientation(const int rotation);
+
         protected:
 
             /**

@@ -9,8 +9,8 @@ namespace Tetris{
         class Tetromino_T : public Tetris::core::Tetromino{
         public:
             Tetromino_T();
-            virtual char getChar() const override;
-            virtual std::array<std::array<char,4>,4> getPiece(int orientation) const override;
+            char getChar() const override;
+            std::array<std::array<char,4>,4> getPiece(int orientation) const override;
         };
     }
 }

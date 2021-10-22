@@ -7,7 +7,7 @@ Tetris::core::Board::Board(){
 void Tetris::core::Board::clear(){
     // Put a '.' char in every board's cell to represent emptiness.
     for(int i = 0; i < m_height; ++i){
-        std::fill(m_board[i].begin(), m_board[i].end(), EMPTY_CELL);
+       std::fill(m_board[i].begin(), m_board[i].end(), EMPTY_CELL);
     }
 }
 

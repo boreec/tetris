@@ -15,7 +15,7 @@ namespace Tetris{
         class Board{
         public:
             Board();
-            void spawnPiece(Tetromino* t);
+
             void clear();
 
             const auto& getBoard() const;

@@ -184,7 +184,7 @@ void Tetris::gui::MainWindow::updateGameArea(){
               m_timer->start(m_timeUpdate * std::pow(1 - m_timeDecreaseRate, m_level));
             }
             // todo: add blinking animation on completed lines.
-            m_board.clearLines(completedRange);
+            m_board.eraseLines(completedRange);
         }else if(m_board.isGameOver()){
             m_renderGame->setGameOver(true);
             m_renderGame->update();

@@ -16,7 +16,18 @@ namespace Tetris{
         public:
             Board();
 
+            /**
+             * @brief clear the whole board with empty cells.
+             */
             void clear();
+
+            /**
+             * @brief eraseLines will remove the board's rows in a given range.
+             * The lines that are above the erased lines will fall to give a
+             * "gravity effect".
+             * @param range is the range of rows to clear.
+             */
+            void eraseLines(const std::pair<int, int>& range);
 
             const auto& getBoard() const;
             void dropCurrentPiece();
@@ -64,12 +75,6 @@ namespace Tetris{
              * completed lines, {0, 0} otherwise.
              */
             std::pair<int, int> hasCompletedLines() const;
-
-            /**
-             * @brief clearLines will put empty cells in the given rows range.
-             * @param range is the range of rows to clear.
-             */
-            void clearLines(std::pair<int, int> range);
 
             /**
              * @brief setCurrentPiece sets the given Tetromino piece as the current moving piece.

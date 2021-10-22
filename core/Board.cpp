@@ -11,6 +11,18 @@ void Tetris::core::Board::clear(){
     }
 }
 
+void Tetris::core::Board::eraseLines(const std::pair<int, int>& range){
+    int completedLines = range.second - range.first;
+    for(int i = range.first + completedLines - 1; i > completedLines; --i){
+        if(i <= completedLines){
+            for(int j = 0; j < m_width; ++j){m_board[i][j] = EMPTY_CELL;}
+            continue;
+        }for(int j = 0; j < m_width; ++j){
+            m_board[i][j] = m_board[i - completedLines][j];
+        }
+    }
+}
+
 
 const auto& Tetris::core::Board::getBoard() const{
     return m_board;
@@ -130,18 +142,6 @@ std::pair<int, int> Tetris::core::Board::hasCompletedLines() const{
         }
     }
     return completeLines ? std::pair<int, int>(completeBegin, completeBegin+completeLines) : std::pair<int, int>(0,0);
-}
-
-void Tetris::core::Board::clearLines(std::pair<int, int> range){
-    int completedLines = range.second - range.first;
-    for(int i = range.first + completedLines - 1; i > completedLines; --i){
-        if(i <= completedLines){
-            for(int j = 0; j < m_width; ++j){m_board[i][j] = EMPTY_CELL;}
-            continue;
-        }for(int j = 0; j < m_width; ++j){
-            m_board[i][j] = m_board[i - completedLines][j];
-        }
-    }
 }
 
 void Tetris::core::Board::setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t){

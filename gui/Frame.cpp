@@ -7,3 +7,15 @@ Tetris::gui::Frame::Frame(const QPainterPath& painterPath, const unsigned frameI
 {
 
 }
+
+unsigned Tetris::gui::Frame::getFrameInterval() const{
+    return m_frameInterval;
+}
+
+QColor Tetris::gui::Frame::getColor() const{
+    return m_color;
+}
+
+QPainterPath Tetris::gui::Frame::getPainterPath() const{
+    return m_painterPath;
+}

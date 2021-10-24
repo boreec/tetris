@@ -4,8 +4,7 @@
 #include <QPainter>
 #include <QPainterPath>
 
-namespace Tetris{
-    namespace gui{
+namespace Tetris::gui{
         /**
          * @brief RendererFacilities provides facilities for drawing.
          */
@@ -28,6 +27,5 @@ namespace Tetris{
              */
             static void drawBlock(QPainter& painter, const int x, const int y, const int size, const QColor& colour);
         };
-    }
 }
 

@@ -22,17 +22,17 @@ namespace Tetris::gui{
          * frames to display at first, frames[1] contains the next vector of frames
          * to display afterward to complete the animation.
          */
-        Animator(const std::vector<std::vector<Tetris::gui::Frame>>& frames);
+        Animator(const std::vector<Tetris::gui::Frame>& frames);
 
         /**
          * @brief getFrames returns the animation's frames.
          */
-        std::vector<std::vector<Tetris::gui::Frame>> getFrames() const;
+        std::vector<Tetris::gui::Frame> getFrames() const;
     protected:
 
         /**
          * @brief m_frames corresponds to the animation's frame.
          */
-        std::vector<std::vector<Tetris::gui::Frame>> m_frames;
+        std::vector<Tetris::gui::Frame> m_frames;
     };
 }

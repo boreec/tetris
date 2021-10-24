@@ -1,16 +1,11 @@
 #include "Animator.hpp"
 
-Tetris::gui::Animator::Animator(const std::vector<std::vector<std::pair<QPainterPath, QColor>>>& frames, const unsigned frameInterval):
-    m_frames(frames),
-    m_frameInterval(frameInterval)
+Tetris::gui::Animator::Animator(const std::vector<std::vector<Tetris::gui::Frame>>& frames):
+    m_frames(frames)
 {
 
 }
 
-const std::vector<std::vector<std::pair<QPainterPath, QColor>>>& Tetris::gui::Animator::getFrames() const{
+std::vector<std::vector<Tetris::gui::Frame>> Tetris::gui::Animator::getFrames() const{
     return m_frames;
-}
-
-unsigned Tetris::gui::Animator::getFrameInterval() const {
-    return m_frameInterval;
 }

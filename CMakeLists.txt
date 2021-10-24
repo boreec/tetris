@@ -50,6 +50,8 @@ if(ANDROID)
     core/Tetromino_T.hpp
     core/Tetromino_Z.cpp
     core/Tetromino_Z.hpp
+    gui/Animator.cpp
+    gui/Animator.hpp
     gui/MainWindow.cpp
     gui/MainWindow.hpp
     gui/RendererFacilities.cpp
@@ -82,6 +84,8 @@ else()
     core/Tetromino_T.hpp
     core/Tetromino_Z.cpp
     core/Tetromino_Z.hpp
+    gui/Animator.cpp
+    gui/Animator.hpp
     gui/MainWindow.cpp
     gui/MainWindow.hpp
     gui/RendererFacilities.cpp

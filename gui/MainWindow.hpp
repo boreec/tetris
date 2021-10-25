@@ -134,7 +134,7 @@ namespace Tetris::gui{
          * @brief m_completeLineAnimation is the animation when the lines
          * are completed.
          */
-        std::unique_ptr<Animator> m_completeLineAnimation;
+        std::unique_ptr<Animation> m_completeLineAnimation;
     protected:
         void keyReleaseEvent(QKeyEvent* e) override;
     };

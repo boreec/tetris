@@ -12,7 +12,7 @@ namespace Tetris::gui{
     /**
      * @brief The Animator represents an animation of @class Frame.
      */
-    class Animator{
+    class Animation{
     public:
 
         /**
@@ -22,7 +22,7 @@ namespace Tetris::gui{
          * frames to display at first, frames[1] contains the next vector of frames
          * to display afterward to complete the animation.
          */
-        Animator(const std::vector<Tetris::gui::Frame>& frames);
+        Animation(const std::vector<Tetris::gui::Frame>& frames);
 
         /**
          * @brief getFrames returns the animation's frames.

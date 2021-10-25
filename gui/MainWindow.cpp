@@ -130,17 +130,6 @@ void Tetris::gui::MainWindow::initWidgets(){
     this->setCentralWidget(mainWidget);
 }
 
-void Tetris::gui::MainWindow::initAnimations(){
-    std::vector<Tetris::gui::Frame> completeLineFrames;
-    completeLineFrames.push_back(Tetris::gui::Frame(QPainterPath(),50));
-    completeLineFrames.push_back(Tetris::gui::Frame(QPainterPath(),50, QColor(0,0,0,0)));
-    completeLineFrames.push_back(Tetris::gui::Frame(QPainterPath(),50));
-    completeLineFrames.push_back(Tetris::gui::Frame(QPainterPath(),50, QColor(0,0,0,0)));
-    completeLineFrames.push_back(Tetris::gui::Frame(QPainterPath(),50));
-    completeLineFrames.push_back(Tetris::gui::Frame(QPainterPath(),50, QColor(0,0,0,0)));
-    m_completeLineAnimation = std::unique_ptr<Animation>(new Animation(completeLineFrames));
-}
-
 void Tetris::gui::MainWindow::connectWidgets(){
     QObject::connect(m_comboRandomizer, SIGNAL(currentTextChanged(QString)), this, SLOT(changePiecePandomizer()));
     QObject::connect(m_buttonStart, SIGNAL(clicked()), this, SLOT(initGameArea()));

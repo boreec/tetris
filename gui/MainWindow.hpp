@@ -19,7 +19,6 @@
 
 #include "core/Tetromino.hpp"
 #include "core/TetrominoFactory.hpp"
-#include "gui/Animator.hpp"
 #include "gui/RendererGame.hpp"
 #include "gui/RendererPreview.hpp"
 
@@ -50,11 +49,6 @@ namespace Tetris::gui{
          * Initialize window' widget' properties.
          * */
         void initWidgets();
-
-        /**
-         * @brief initAnimations initialize animations.
-         */
-        void initAnimations();
 
         void addScore(const int);
 
@@ -130,11 +124,6 @@ namespace Tetris::gui{
          */
         const int m_comboBoxWidth = 150;
 
-        /**
-         * @brief m_completeLineAnimation is the animation when the lines
-         * are completed.
-         */
-        std::unique_ptr<Animation> m_completeLineAnimation;
     protected:
         void keyReleaseEvent(QKeyEvent* e) override;
     };

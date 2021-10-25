@@ -39,9 +39,20 @@ namespace Tetris::gui{
 
         void drawGameOverScreen();
 
+        void setExtraShapes(const std::vector<QPainterPath>& extraShapes);
 
+        unsigned getCellSize() const;
+
+        unsigned getMarginLeft() const;
+
+        unsigned getMarginTop() const;
     private:
         Tetris::core::Board* m_board;
         bool m_gameOver;
+        std::vector<QPainterPath> m_extraShapes;
+
+        unsigned m_cellSize;
+        unsigned m_marginLeft;
+        unsigned m_marginTop;
     };
 }

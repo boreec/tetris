@@ -2,7 +2,7 @@
 #include <iostream>
 
 Tetris::gui::RendererGame::RendererGame() :
-    m_board(nullptr), m_gameOver(false)
+    m_board(nullptr), m_gameOver(false), m_cellSize(0), m_marginLeft(0), m_marginTop(0)
 {
 
 }
@@ -21,20 +21,23 @@ void Tetris::gui::RendererGame::paintGL(){
     painter.fillRect(0,0,this->width(), this->height(),QBrush(Qt::black));
 
     if(m_board){
-        int cellSize = this->height() / Tetris::core::Board::m_height;
-        int marginLeft = (this->width() - Tetris::core::Board::m_width * cellSize) / 2;
-        int marginTop = this->height() - Tetris::core::Board::m_height * cellSize;
+        m_cellSize = this->height() / Tetris::core::Board::m_height;
+        m_marginLeft = (this->width() - Tetris::core::Board::m_width * m_cellSize) / 2;
+        m_marginTop = this->height() - Tetris::core::Board::m_height * m_cellSize;
         for(int i = 0; i < Tetris::core::Board::m_height; ++i){
             for(int j = 0; j < Tetris::core::Board::m_width; ++j){
                 if(m_board->getCell(j,i) != EMPTY_CELL){
-                    Tetris::gui::RendererFacilities::drawBlock(painter, marginLeft + j * cellSize, marginTop + i * cellSize, cellSize, m_board->getCharColor(m_board->getCell(j,i)));
+                    Tetris::gui::RendererFacilities::drawBlock(painter, m_marginLeft + j * m_cellSize, m_marginTop + i * m_cellSize, m_cellSize, m_board->getCharColor(m_board->getCell(j,i)));
                 }else{
                     painter.setPen(Qt::blue);
-                    painter.drawRect(marginLeft + j * cellSize, marginTop + i * cellSize, cellSize, cellSize);
+                    painter.drawRect(m_marginLeft + j * m_cellSize, m_marginTop + i * m_cellSize, m_cellSize, m_cellSize);
                 }
             }
         }
     }
+
+    for(const auto& shape : m_extraShapes)
+        painter.drawPath(shape);
 }
 
 void Tetris::gui::RendererGame::drawGameOverScreen(){
@@ -55,4 +58,20 @@ void Tetris::gui::RendererGame::setBoard(Tetris::core::Board *board){
 
 void Tetris::gui::RendererGame::setGameOver(bool b){
     m_gameOver = b;
+}
+
+void Tetris::gui::RendererGame::setExtraShapes(const std::vector<QPainterPath> &extraShapes){
+    m_extraShapes = extraShapes;
+}
+
+unsigned Tetris::gui::RendererGame::getCellSize() const {
+    return m_cellSize;
+}
+
+unsigned Tetris::gui::RendererGame::getMarginTop() const{
+    return m_marginTop;
+}
+
+unsigned Tetris::gui::RendererGame::getMarginLeft() const{
+    return m_marginLeft;
 }

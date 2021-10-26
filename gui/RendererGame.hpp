@@ -41,6 +41,8 @@ namespace Tetris::gui{
 
         void setExtraShapes(const std::vector<QPainterPath>& extraShapes);
 
+        void setExtraColor(const QColor& c);
+
         unsigned getCellSize() const;
 
         unsigned getMarginLeft() const;
@@ -50,7 +52,7 @@ namespace Tetris::gui{
         Tetris::core::Board* m_board;
         bool m_gameOver;
         std::vector<QPainterPath> m_extraShapes;
-
+        QColor m_extraColor;
         unsigned m_cellSize;
         unsigned m_marginLeft;
         unsigned m_marginTop;

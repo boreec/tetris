@@ -34,10 +34,10 @@ void Tetris::gui::RendererGame::paintGL(){
                 }
             }
         }
+        for(const auto& shape : m_extraShapes){
+            painter.fillPath(shape, m_extraColor);
+        }
     }
-
-    for(const auto& shape : m_extraShapes)
-        painter.drawPath(shape);
 }
 
 void Tetris::gui::RendererGame::drawGameOverScreen(){
@@ -58,6 +58,10 @@ void Tetris::gui::RendererGame::setBoard(Tetris::core::Board *board){
 
 void Tetris::gui::RendererGame::setGameOver(bool b){
     m_gameOver = b;
+}
+
+void Tetris::gui::RendererGame::setExtraColor(const QColor &c){
+    m_extraColor = c;
 }
 
 void Tetris::gui::RendererGame::setExtraShapes(const std::vector<QPainterPath> &extraShapes){

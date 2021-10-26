@@ -184,40 +184,12 @@ void Tetris::gui::MainWindow::updateGameArea(){
               m_timer->stop();
               m_timer->start(m_timeUpdate * std::pow(1 - m_timeDecreaseRate, m_level));
             }
-            // todo: add blinking animation on completed lines.
-            QPainterPath blinkArea;
-            blinkArea.lineTo(m_renderGame->getMarginLeft(), m_renderGame->getMarginTop() + m_renderGame->getCellSize() * completedRange.first);
-            blinkArea.lineTo(m_renderGame->getMarginLeft() + m_renderGame->getCellSize() * Tetris::core::Board::m_width,
-                             m_renderGame->getMarginTop() + m_renderGame->getCellSize() * completedRange.first);
-            blinkArea.lineTo(m_renderGame->getMarginLeft() + m_renderGame->getCellSize() * Tetris::core::Board::m_width,
-                             m_renderGame->getMarginTop() + m_renderGame->getCellSize() * completedRange.second);
-            blinkArea.lineTo(m_renderGame->getMarginLeft(), m_renderGame->getMarginTop() + m_renderGame->getCellSize() * completedRange.second);
-            blinkArea.lineTo(m_renderGame->getMarginLeft(), m_renderGame->getMarginTop() + m_renderGame->getCellSize() * completedRange.first);
 
             m_timer->stop();
-            m_renderGame->setExtraShapes({blinkArea});
-            m_renderGame->setExtraColor(Qt::black); // first blink
-            m_renderGame->repaint();
-            QThread::msleep(50);
-
-            m_renderGame->setExtraColor(QColor(0,0,0,0));
-            m_renderGame->repaint();
-            QThread::msleep(50);
-
-            m_renderGame->setExtraColor(Qt::black); // second blink
-            m_renderGame->repaint();
-            QThread::msleep(50);
-
-            m_renderGame->setExtraColor(QColor(0,0,0,0));
-            m_renderGame->repaint();
-
-            QThread::msleep(50);
-            m_renderGame->setExtraColor(Qt::black); // first blink
-            m_renderGame->repaint();
-            m_renderGame->setExtraShapes({});
-            m_renderGame->setExtraColor(QColor(0,0,0,0));
-            m_board.eraseLines(completedRange);
+            blinkLines(completedRange.first, completedRange.second);
             m_timer->start();
+            m_board.eraseLines(completedRange);
+
         }else if(m_board.isGameOver()){
             m_renderGame->setGameOver(true);
             m_renderGame->update();
@@ -228,6 +200,39 @@ void Tetris::gui::MainWindow::updateGameArea(){
         m_board.getCurrentPiece()->setY(m_board.getCurrentPiece()->getY() + 1);
     }
     m_renderGame->update();
+}
+
+void Tetris::gui::MainWindow::blinkLines(const int lineStart, const int lineStop){
+    QPainterPath blinkArea;
+    blinkArea.lineTo(m_renderGame->getMarginLeft(), m_renderGame->getMarginTop() + m_renderGame->getCellSize() * lineStart);
+    blinkArea.lineTo(m_renderGame->getMarginLeft() + m_renderGame->getCellSize() * Tetris::core::Board::m_width,
+                     m_renderGame->getMarginTop() + m_renderGame->getCellSize() * lineStart);
+    blinkArea.lineTo(m_renderGame->getMarginLeft() + m_renderGame->getCellSize() * Tetris::core::Board::m_width,
+                     m_renderGame->getMarginTop() + m_renderGame->getCellSize() * lineStop);
+    blinkArea.lineTo(m_renderGame->getMarginLeft(), m_renderGame->getMarginTop() + m_renderGame->getCellSize() * lineStop);
+    blinkArea.lineTo(m_renderGame->getMarginLeft(), m_renderGame->getMarginTop() + m_renderGame->getCellSize() * lineStart);
+
+    m_renderGame->setExtraShapes({blinkArea});
+    m_renderGame->setExtraColor(Qt::black); // first blink
+    m_renderGame->repaint();
+    QThread::msleep(50);
+
+    m_renderGame->setExtraColor(QColor(0,0,0,0));
+    m_renderGame->repaint();
+    QThread::msleep(50);
+
+    m_renderGame->setExtraColor(Qt::black); // second blink
+    m_renderGame->repaint();
+    QThread::msleep(50);
+
+    m_renderGame->setExtraColor(QColor(0,0,0,0));
+    m_renderGame->repaint();
+
+    QThread::msleep(50);
+    m_renderGame->setExtraColor(Qt::black); // first blink
+    m_renderGame->repaint();
+    m_renderGame->setExtraShapes({});
+    m_renderGame->setExtraColor(QColor(0,0,0,0));
 }
 
 void Tetris::gui::MainWindow::addScore(const int completedLines){

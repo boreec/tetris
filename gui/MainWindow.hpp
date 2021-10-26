@@ -57,6 +57,8 @@ namespace Tetris::gui{
          */
         void connectWidgets();
 
+        void blinkLines(const int lineStart, const int lineStop);
+
         QPushButton* m_buttonStart;
         QPushButton* m_buttonPause;
         QPushButton* m_buttonAbout;

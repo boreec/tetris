@@ -27,32 +27,32 @@ void Tetris::gui::MainWindow::initWidgets(){
 
     /* Initialize game labels. */
     QFont labelFont("Courier", 12, QFont::Bold);
-    m_labelNext = new QLabel("Next", this);
+    m_labelNext = new QLabel(tr("Next"), this);
     m_labelNext->setFont(labelFont);
-    m_labelLines = new QLabel("Lines\n0", this);
+    m_labelLines = new QLabel(tr("Lines\n0"), this);
     m_labelLines->setFont(labelFont);
-    m_labelLevel = new QLabel("Level\n0", this);
+    m_labelLevel = new QLabel(tr("Level\n0"), this);
     m_labelLevel->setFont(labelFont);
-    m_labelScore = new QLabel("Score\n0", this);
-    m_labelScore->setText(QString("Score\n0"));
+    m_labelScore = new QLabel(tr("Score\n0"), this);
+    m_labelScore->setText(QString(tr("Score\n0")));
     m_labelScore->setFont((labelFont));
 
     /* Initialize option labels. */
-    m_labelRandomizer = new QLabel("Randomizer", this);
-    m_labelLanguage = new QLabel("Language", this);
+    m_labelRandomizer = new QLabel(tr("Randomizer"), this);
+    m_labelLanguage = new QLabel(tr("Language"), this);
 
     /* Initialize option combo boxes. */
     m_comboLanguage = new QComboBox(this);
-    m_comboLanguage->addItem("english");
-    m_comboLanguage->addItem("français");
+    m_comboLanguage->addItem(tr("English"));
+    m_comboLanguage->addItem(tr("Français"));
     m_comboRandomizer = new QComboBox(this);
-    m_comboRandomizer->addItem("uniform randomizer");
-    m_comboRandomizer->addItem("7-bag randomizer");
+    m_comboRandomizer->addItem(tr("uniform randomizer"));
+    m_comboRandomizer->addItem(tr("7-bag randomizer"));
 
     /* Initialize buttons */
-    m_buttonStart = new QPushButton("start", this);
-    m_buttonPause = new QPushButton("pause", this);
-    m_buttonAbout = new QPushButton("about", this);
+    m_buttonStart = new QPushButton(tr("start"), this);
+    m_buttonPause = new QPushButton(tr("pause"), this);
+    m_buttonAbout = new QPushButton(tr("about"), this);
 
     /* Initialize message box in about button. */
     m_messageBox = new QMessageBox(this);

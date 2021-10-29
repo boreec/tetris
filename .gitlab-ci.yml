@@ -21,5 +21,9 @@ build:
     - make
 doc:
   script:
-    - cd build/doc
+    - mkdir build
+    - cd build
+    - cmake ..
+    - cd doc
     - make
+    - test -f ../../doc/html/index.html && echo 'index.html exists!'

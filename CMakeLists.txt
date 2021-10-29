@@ -95,3 +95,6 @@ endif()
 
 target_link_libraries(Tetris PRIVATE Qt6::Widgets)
 target_link_libraries(Tetris PRIVATE Qt6::OpenGLWidgets)
+
+add_subdirectory(doc)
+

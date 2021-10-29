@@ -28,6 +28,9 @@ namespace Tetris::gui{
      * \mainpage
      * \section intro_sec Introduction
      * The MainWindow class represents the window running the application.
+     * It computes the game states according to a QTimer object.
+     *
+     * RendererGame is the class dealing with the game drawing.
      */
     class MainWindow : public QMainWindow{
         Q_OBJECT

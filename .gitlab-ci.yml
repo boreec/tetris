@@ -14,13 +14,15 @@ before_script:
   - apt-get update
   - apt-get install -y cmake
   - apt-get install -y doxygen
-build:
+compile:
+  stage: build
   script:
     - mkdir build
     - cd build
     - cmake ..
     - make
 doc:
+  stage: doc
   script:
     - mkdir build
     - cd build

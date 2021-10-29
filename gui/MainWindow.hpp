@@ -23,23 +23,52 @@
 #include "gui/RendererPreview.hpp"
 
 namespace Tetris::gui{
+
     /**
-     * @brief MainWindow is the widget representing the main window.
+     * \mainpage
+     * \section intro_sec Introduction
+     * The MainWindow class represents the window running the application.
      */
     class MainWindow : public QMainWindow{
         Q_OBJECT
 
     public:
+
+        /**
+         * @brief MainWindow's constructor
+         * @param parent is by default nullptr because there's no parent.
+         */
         MainWindow(QWidget *parent = nullptr);
+
+        /**
+         * Deallocate dynamic memory created by MainWindow.
+         * */
         ~MainWindow();
 
     public slots:
+
+        /**
+         * @brief initGameArea initialize game drawing area.
+         */
         void initGameArea();
+
+        /**
+         * @brief updateGameArea update game area depending on the game state.
+         */
         void updateGameArea();
+
+        /**
+         * @brief pauseGame pause the timer that update the game drawing area.
+         */
         void pauseGame();
+
+        /**
+         * @brief changePiecePandomizer dynamically change the piece generator.
+         */
         void changePiecePandomizer();
 
     private:
+
         /*
          * Initialize window' properties (size, position...).
          * */

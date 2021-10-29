@@ -13,6 +13,7 @@ image: wiktorguz/qt6
 before_script:
   - apt-get update
   - apt-get install -y cmake
+  - apt-get install -y doxygen
 build:
   script:
     - mkdir build

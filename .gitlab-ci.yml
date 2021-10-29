@@ -19,3 +19,7 @@ build:
     - cd build
     - cmake ..
     - make
+doc:
+  script:
+    - cd build/doc
+    - make

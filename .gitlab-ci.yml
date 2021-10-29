@@ -13,9 +13,20 @@ image: wiktorguz/qt6
 before_script:
   - apt-get update
   - apt-get install -y cmake
-build:
+  - apt-get install -y doxygen
+compile:
+  stage: build
   script:
     - mkdir build
     - cd build
     - cmake ..
     - make
+doc:
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - cd doc
+    - make
+    - test -f ../../doc/html/index.html && echo 'index.html exists!'

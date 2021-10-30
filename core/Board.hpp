@@ -13,6 +13,10 @@ namespace Tetris::core{
      */
     class Board{
     public:
+
+        /**
+         * @brief Board's constructor creates an empty Board.
+         */
         Board();
 
         /**
@@ -28,7 +32,15 @@ namespace Tetris::core{
          */
         void eraseLines(const std::pair<int, int>& range);
 
+        /**
+         * @brief getBoard returns a reference to the Board.
+         */
         const auto& getBoard() const;
+
+        /**
+         * @brief dropCurrentPiece will drop the current piece onto the Board.
+         * the currentPiece handle will be set to nullptr aftwerward.
+         */
         void dropCurrentPiece();
 
         /**
@@ -81,13 +93,40 @@ namespace Tetris::core{
          * @param t is the new Tetromino.
          */
         void setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t);
+
+        /**
+         * @brief setNextPiece sets the given Tetromino piece as the next piece.
+         * @param t is the Tetromino for the next piece.
+         */
         void setNextPiece(std::unique_ptr<Tetris::core::Tetromino> t);
 
-        // swap next piece with current piece and set new tetromino for current piece.
+        /**
+         * @brief swapPieces will replace currentPiece's content with nextPiece's content.
+         * @param next is the new Tetromino for nextPiece.
+         */
         void swapPieces(std::unique_ptr<Tetris::core::Tetromino> next);
+
+        /**
+         * @brief getCurrentPiece returns a pointer to the currentPiece (but still owns it).
+         */
         Tetromino* getCurrentPiece();
+
+        /**
+         * @brief getNextPiece returns a pointer to the nextPiece (but still owns it).
+         */
         Tetromino* getNextPiece();
+
+        /**
+         * @brief getCell returns the content of a board cell as a char.
+         * @param x is the x axis coordinate of the cell.
+         * @param y is the y axis coordinate of the cell.
+         */
         char getCell(const int x, const int y) const;
+
+        /**
+         * @brief getCharColor returns a color for a specific character.
+         * @param c is the character for which the color needs to be known.
+         */
         static QColor getCharColor(const char c);
 
         /**

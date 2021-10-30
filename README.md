@@ -13,7 +13,8 @@ The game actually look like this:
 - Qt >= 6.0.0
 - OpenGL
 - CMake >= 3.5
-- C++14 
+- C++14
+- [Doxygen](https://www.doxygen.nl/index.html) to build documentation (optional).
 
 # Building/Executing
 
@@ -28,4 +29,11 @@ $ make
 $ ./Tetris
 ```
 
+From this step, you can generate the documentation:
+
+```bash
+$ cd doc
+$ make
+$ firefox ../../doc/html/index.html
+```
 

@@ -89,7 +89,7 @@ namespace Tetris::core{
 
         /**
          * @brief setCurrentPiece sets the given Tetromino piece as the current moving piece.
-         * @class Board will own the given Tetromino pointer.
+         * Board own the given Tetromino pointer.
          * @param t is the new Tetromino.
          */
         void setCurrentPiece(std::unique_ptr<Tetris::core::Tetromino> t);

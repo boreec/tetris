@@ -6,7 +6,7 @@ You can see more similar projects here: https://boreec.fr/projects/
 
 The game actually look like this:
 
-![](https://imgur.com/a/hELhHt5)
+![](https://i.imgur.com/UWvkZNk.mp4)
 
 # Requirements
 

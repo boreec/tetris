@@ -4,9 +4,7 @@ This program is an amateur reproduction of the Tetris game made in C++, Qt and O
 
 You can see more similar projects here: https://boreec.fr/projects/
 
-The game actually look like this:
-
-![](https://i.imgur.com/UWvkZNk.mp4)
+Here is a video of the game running: https://www.youtube.com/watch?v=kj1cXrnWwcY
 
 # Requirements
 

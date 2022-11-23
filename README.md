@@ -1,3 +1,5 @@
+(Mirror from https://gitlab.com/boreec/tetris)
+
 # Description
 
 This program is an amateur reproduction of the Tetris game made in C++, Qt and OpenGL. 

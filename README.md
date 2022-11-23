@@ -1,4 +1,4 @@
-(Mirror from https://gitlab.com/boreec/tetris)
+Warning, this repository is a backup mirror for https://gitlab.com/boreec/tetris.
 
 # Description
 

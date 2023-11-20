@@ -1,10 +1,8 @@
-Warning, this repository is a backup mirror for https://gitlab.com/boreec/tetris.
-
 # Description
 
-This program is an amateur reproduction of the Tetris game made in C++, Qt and OpenGL. 
+This program is an amateur reproduction of the Tetris game made with C++, Qt and OpenGL. 
 
-You can see more similar projects here: https://boreec.fr/projects/
+You can see more similar projects here: https://boreec.github.io/projects
 
 Here is a video of the game running: https://www.youtube.com/watch?v=kj1cXrnWwcY
 

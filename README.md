@@ -1,10 +1,8 @@
 # Description
 
-This program is an amateur reproduction of the Tetris game made with C++, Qt and OpenGL. 
+This program is an amateur reproduction of the Tetris game made with C++, Qt and OpenGL.
 
-You can see more similar projects here: https://boreec.github.io/projects
-
-Here is a video of the game running: https://www.youtube.com/watch?v=kj1cXrnWwcY
+[![video](https://img.youtube.com/vi/kj1cXrnWwcY/0.jpg)](https://www.youtube.com/watch?v=kj1cXrnWwcY)
 
 # Requirements
 
